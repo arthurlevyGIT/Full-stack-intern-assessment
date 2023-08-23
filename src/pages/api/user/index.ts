@@ -15,14 +15,14 @@ export default async function handle(
     const { email, name } = req.body;
 
     // Check for the required body fields
-    const validationError = validateBodyFields(email, name);
+    const validationError = await validateBodyFields(email, name);
     if (validationError)
         return res.status(400).json({ error: validationError });
 
     return post(req, res);
 }
 
-function validateBodyFields(email: unknown, name: unknown) {
+async function validateBodyFields(email: string, name: string) {
     if (!email)
         return 'email is required.';
 
@@ -32,7 +32,33 @@ function validateBodyFields(email: unknown, name: unknown) {
     if (!name)
         return 'name is required.';
 
+    if (await isNameTaken(name))
+        return 'Name already taken';
+
+    if (await isEmailTaken(email))
+        return 'Email already taken';
+
     return null;
+}
+
+async function isNameTaken(name: string) {
+    const user = await prisma.user.findFirst({
+        where: {
+            name: name
+        }
+    });
+
+    return user !== null;
+}
+
+async function isEmailTaken(email: string) {
+    const user = await prisma.user.findFirst({
+        where: {
+            email: email
+        }
+    });
+
+    return user !== null;
 }
 
 async function post(
