@@ -14,7 +14,7 @@ export const authMiddleware = (handler: any) => async (
   jwt.verify(token, JWT_SECRET!, (err, user) => {
     if (err)
       return res.status(403).json({ message: "Forbidden" });
-    req.userId = user.id;
+    req.user = user;
     return handler(req, res);
   });
 };
