@@ -1,13 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
+import prisma from '../../../lib/prisma'
 
 // In production we should load it from the environment
 export const JWT_SECRET = 'mysecret=)';
-
-// Mock user data
-const users = [
-    { id: 1, username: "example", password: "password" },
-];
 
 export default async function handle(
     req: NextApiRequest,
@@ -16,20 +12,20 @@ export default async function handle(
     if (req.method !== "POST")
         return res.status(405).json({ message: "Method Not Allowed" });
 
-      const { username, password } = req.body;
+    const { email, password } = req.body;
 
-      // In production we must use hashed password for security reasons
-      const user = users.find(
-        (u) => u.username === username && u.password === password
-      );
+    // In production we must use hashed password for security reasons
+    const user = await prisma.user.findFirst({
+        where: { email: email }
+    });
 
-      if (!user)
+    if (!(user && user.email === email && user.password === password))
         return res.status(401).json({ message: 'Unauthorized' });
 
-      const accessToken = jwt.sign(
-        { username: user.username, id: user.id },
+    const accessToken = jwt.sign(
+        { email: user.email, id: user.id },
         JWT_SECRET!
-      );
+    );
 
-      return res.status(200).json({ accessToken });
+    return res.status(200).json({ accessToken });
 }
