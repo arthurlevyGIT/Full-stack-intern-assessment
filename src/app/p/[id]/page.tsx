@@ -2,6 +2,7 @@ import React from 'react'
 import { notFound, } from 'next/navigation'
 import prisma from '../../../lib/prisma'
 import PostDetails from '../../../components/PostDetails'
+import Comment from '../../comment/comment'
 
 export default async function Post({ params }: { params: { id: string } }) {
   const id = Number(
@@ -17,6 +18,9 @@ export default async function Post({ params }: { params: { id: string } }) {
   if (!post) notFound()
 
   return (
+    <div>
     <PostDetails {...post} />
+    <Comment />
+    </div>
   )
 }
