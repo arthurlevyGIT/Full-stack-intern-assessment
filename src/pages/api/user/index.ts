@@ -12,17 +12,17 @@ export default async function handle(
     if (req.method !== 'POST')
         return res.status(405).json({ error: 'Method Not Allowed' });
 
-    const { email, name } = req.body;
+    const { email, name, password } = req.body;
 
     // Check for the required body fields
-    const validationError = await validateBodyFields(email, name);
+    const validationError = await validateBodyFields(email, name, password);
     if (validationError)
         return res.status(400).json({ error: validationError });
 
     return post(req, res);
 }
 
-async function validateBodyFields(email: string, name: string) {
+async function validateBodyFields(email: string, name: string, password: string) {
     if (!email)
         return 'email is required.';
 
@@ -31,6 +31,9 @@ async function validateBodyFields(email: string, name: string) {
 
     if (!name)
         return 'name is required.';
+
+    if (!password)
+        return 'password is required.';
 
     if (await isNameTaken(name))
         return 'Name already taken';
@@ -67,7 +70,9 @@ async function post(
 ) {
     const result = await prisma.user.create({
         data: {
-            ...req.body,
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
         },
     })
     return res.status(201).json(result)
