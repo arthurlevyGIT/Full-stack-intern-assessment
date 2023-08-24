@@ -7,12 +7,12 @@ export default function SignUp() {
   const router = useRouter()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-
+  const [password, setPassword] = useState('')
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     try {
-      const body = { name, email }
+      const body = { name, email, password }
       await fetch(`/api/user`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -42,7 +42,13 @@ export default function SignUp() {
             type="text"
             value={email}
           />
-          <input disabled={!name || !email} type="submit" value="Signup" />
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            type="text"
+            value={password}
+          />
+          <input disabled={!name || !email || !password} type="submit" value="Signup" />
           <a className={styles.back} href="/">
             or Cancel
           </a>
