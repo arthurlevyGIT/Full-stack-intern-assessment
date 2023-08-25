@@ -20,7 +20,7 @@ export default async function Post({ params }: { params: { id: string } }) {
   return (
     <div>
     <PostDetails {...post} />
-    <Comment />
+    <Comment postId={id} />
     </div>
   )
 }
