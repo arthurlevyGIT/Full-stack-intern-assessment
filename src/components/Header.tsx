@@ -12,6 +12,14 @@ export default function Header() {
     routePathName === pathname
 
   const { authenticated } = useAuth();
+  const userData = localStorage.getItem('userData');
+  const userName = authenticated && userData ? JSON.parse(userData).name : null;
+
+  // TODO: Put this below in a css file
+  const inlineStyle = {
+    display: 'inline',
+    marginRight: '10px',
+  };
 
   return (
     <nav>
@@ -43,6 +51,7 @@ export default function Header() {
         {/* Render Create draft link if authenticated */}
         {authenticated && (
           <>
+            <p style={inlineStyle}>{userName}</p>
             <Link href="/create" legacyBehavior>
               <a data-active={isActive('/create')}>+ Create draft</a>
             </Link>
