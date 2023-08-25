@@ -3,6 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAuth } from '../context/authContext';
+import  Signout  from '../components/Signout'
 import styles from './Header.module.css'
 
 export default function Header() {
@@ -41,9 +42,12 @@ export default function Header() {
         )}
         {/* Render Create draft link if authenticated */}
         {authenticated && (
-          <Link href="/create" legacyBehavior>
-            <a data-active={isActive('/create')}>+ Create draft</a>
-          </Link>
+          <>
+            <Link href="/create" legacyBehavior>
+              <a data-active={isActive('/create')}>+ Create draft</a>
+            </Link>
+            <Signout/>
+          </>
         )}
       </div>
     </nav>
