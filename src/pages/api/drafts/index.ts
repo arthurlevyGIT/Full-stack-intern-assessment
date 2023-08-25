@@ -13,9 +13,9 @@ const handle = async function (
 
   const drafts = await prisma.post.findMany({
     where: { published: false, authorId: req.user.id },
-    include: { author: false },
+    include: { author: true },
   });
-  return res.status(201).json(drafts);
+  return res.status(200).json(drafts);
 }
 
 export default authMiddleware(handle);

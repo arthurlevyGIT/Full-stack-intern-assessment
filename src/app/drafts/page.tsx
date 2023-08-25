@@ -1,13 +1,39 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import Post from '../../components/Post'
-import prisma from '../../lib/prisma'
 import styles from '../../styles/Drafts.module.css'
 
-async function Drafts() {
-  const drafts = await prisma.post.findMany({
-    where: { published: false },
-    include: { author: true },
-  })
+export default function Drafts() {
+  const [drafts, setDrafts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userData = localStorage.getItem('userData'); // Fetch userData here
+        if (!userData) {
+          // Handle the case where userData is not available
+          return;
+        }
+        const accessToken = (JSON.parse(userData)).accessToken;
+        const response = await fetch(`/api/drafts`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
+          },
+        });
+        if (response.status === 200) {
+          const drafts = await response.json();
+          setDrafts(drafts);
+        }
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <div>
@@ -23,5 +49,3 @@ async function Drafts() {
     </>
   )
 }
-
-export default Drafts;
