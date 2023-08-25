@@ -6,16 +6,22 @@ import styles from '../../styles/Draft.module.css'
 export default function Draft() {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
-  const [authorEmail, setAuthorEmail] = useState('')
   const router = useRouter()
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     try {
-      const body = { title, content, authorEmail }
+      const userData = localStorage.getItem('userData');
+      if (!userData)
+        return;
+
+      const published = true;
+      const body = { title, content, published }
       await fetch(`/api/post`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${JSON.parse(userData).accessToken}`},
         body: JSON.stringify(body),
       })
 
@@ -37,12 +43,6 @@ export default function Draft() {
             type="text"
             value={title}
           />
-          <input
-            onChange={(e) => setAuthorEmail(e.target.value)}
-            placeholder="Author (email address)"
-            type="text"
-            value={authorEmail}
-          />
           <textarea
             cols={50}
             onChange={(e) => setContent(e.target.value)}
@@ -51,7 +51,7 @@ export default function Draft() {
             value={content}
           />
           <input
-            disabled={!content || !title || !authorEmail}
+            disabled={!content || !title}
             type="submit"
             value="Create"
           />

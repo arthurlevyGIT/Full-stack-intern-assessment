@@ -8,7 +8,7 @@ export default function Signout() {
 
     const handleSignout = async (e: React.SyntheticEvent) => {
         e.preventDefault();
-        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userData');
         logout();
         router.push('/');
     }

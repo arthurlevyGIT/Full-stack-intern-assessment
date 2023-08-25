@@ -9,9 +9,8 @@ export default function Drafts() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userData = localStorage.getItem('userData'); // Fetch userData here
+        const userData = localStorage.getItem('userData');
         if (!userData) {
-          // Handle the case where userData is not available
           return;
         }
         const accessToken = (JSON.parse(userData)).accessToken;
