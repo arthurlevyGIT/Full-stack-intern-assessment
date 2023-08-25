@@ -1,12 +1,14 @@
 'use client'
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '../../context/authContext';
 
 export default function SignIn() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const { login } = useAuth();
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -19,6 +21,10 @@ export default function SignIn() {
       });
 
       if (response.status === 200) {
+        // Saving the JWT token to localStorage
+        const accessToken = (await response.json()).accessToken;
+        localStorage.setItem('accessToken', accessToken);
+        login();
         router.push('/');
       } else {
         setErrorMessage('Authentication failed. Please check your credentials.');
