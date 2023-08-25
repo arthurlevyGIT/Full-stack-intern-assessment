@@ -27,5 +27,6 @@ export default async function handle(
         JWT_SECRET!
     );
 
-    return res.status(200).json({ accessToken });
+    const userData = { name: user.name, id: user.id, accessToken }
+    return res.status(200).json(userData);
 }

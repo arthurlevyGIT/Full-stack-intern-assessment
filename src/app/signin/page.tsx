@@ -22,8 +22,8 @@ export default function SignIn() {
 
       if (response.status === 200) {
         // Saving the JWT token to localStorage
-        const accessToken = (await response.json()).accessToken;
-        localStorage.setItem('accessToken', accessToken);
+        const userData = await response.json();
+        localStorage.setItem('userData', JSON.stringify(userData));
         login();
         router.push('/');
       } else {
