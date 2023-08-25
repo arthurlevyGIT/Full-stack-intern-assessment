@@ -6,6 +6,7 @@ import styles from '../../styles/Draft.module.css'
 export default function Draft() {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [published, setPublished] = useState(false);
   const router = useRouter()
 
   const submitData = async (e: React.SyntheticEvent) => {
@@ -15,13 +16,13 @@ export default function Draft() {
       if (!userData)
         return;
 
-      const published = true;
       const body = { title, content, published }
       await fetch(`/api/post`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${JSON.parse(userData).accessToken}`},
+          'Authorization': `Bearer ${JSON.parse(userData).accessToken}`
+        },
         body: JSON.stringify(body),
       })
 
@@ -50,6 +51,14 @@ export default function Draft() {
             rows={8}
             value={content}
           />
+          <label>
+            Publish:
+            <input
+              type="checkbox"
+              checked={published}
+              onChange={() => setPublished(!published)}
+            />
+          </label>
           <input
             disabled={!content || !title}
             type="submit"
