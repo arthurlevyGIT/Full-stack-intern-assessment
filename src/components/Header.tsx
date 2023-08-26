@@ -46,7 +46,7 @@ export default function Header() {
         {authenticated && (
           <>
             <Link href="/create" legacyBehavior>
-              <a data-active={isActive('/create')}>+ Create draft</a>
+              <a data-active={isActive('/create')}>Create draft</a>
             </Link>
             <Signout />
           </>

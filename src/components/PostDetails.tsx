@@ -46,18 +46,18 @@ export default function PostDetails({ title, author, content, comments, id }: Po
 
   return (
     <div>
-      <h2>{title}</h2>
-      <p>By {author?.name}</p>
+      <h2 className='bg-gray-700 mx-3 mt-3 px-2 py-2 rounded-md font-bold text-lg'>{title}</h2>
+      <p className='mx-3 italic text-sm mt-1 mb-2'>By {author?.name}</p>
       {/* @ts-ignore */}
-      <ReactMarkdown>{content}</ReactMarkdown>
+      <ReactMarkdown className='bg-gray-900 px-3 py-2 my-5 mx-3 rounded-md text-sky-500 font-medium'>{content}</ReactMarkdown>
 
       {comments && comments.length > 0 && (
         <div>
-          <h3>Comments:</h3>
-          <ul>
+          <h3 className='mx-3 mb-2 font-bold'>Comments:</h3>
+          <ul className='mx-3 mb-3'>
             {comments.map((comment, index) => (
-              <li key={index}>
-                <strong>{comment.author?.name}: </strong>
+              <li key={index} className='font-normal border-b border-gray-700'>
+                <strong className='text-purple-300 font-normal'>{comment.author?.name}: </strong>
                 {comment.text}
               </li>
             ))}
@@ -66,13 +66,14 @@ export default function PostDetails({ title, author, content, comments, id }: Po
       )}
 
       {authenticated && (
-        <div>
+        <div className="mx-3flex items-center justify-center">
           <textarea
+            className="bg-gray-800 mx-auto my-2 block border border-white-200 rounded-md"
             placeholder="Write your comment..."
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
           />
-          <button onClick={handleCommentSubmit}>Submit Comment</button>
+          <button onClick={handleCommentSubmit} className='block mx-auto my-2 p-1 border rounded-md border-gray-200'>Submit your comment</button>
         </div>
       )}
     </div>
