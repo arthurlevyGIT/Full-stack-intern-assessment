@@ -33,17 +33,17 @@ export default function Drafts() {
   }, []);
 
   return (
-    <>
-      <div>
-        <h1>Drafts</h1>
-        <main>
-          {drafts.map((post) => (
-            <div key={post.id} >
-              <Post post={post} />
-            </div>
-          ))}
-        </main>
-      </div>
-    </>
+    <div className='mt-8 p-4'>
+      <h1 className='bg-gray-700 mx-auto max-w-screen-md mt-3 px-2 py-2 rounded-md font-bold text-2xl'>
+        Your drafts
+      </h1>
+      <main>
+        {drafts.map((post) => (
+          <div key={post.id} >
+            <Post post={post} />
+          </div>
+        ))}
+      </main>
+    </div>
   )
 }

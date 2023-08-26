@@ -15,7 +15,8 @@ export default function Header() {
   const userName = authenticated && userData ? JSON.parse(userData).name : null;
 
   return (
-    <nav className='bg-gray-900 border-b border-gray-700 flex justify-between items-center py-3 px-4'>
+    <nav className='bg-gray-900 fixed top-0 left-0 right-0 border-b border-gray-700 flex justify-between items-center py-3 px-4'>
+      {/* fp-4 text-white */}
       <div>
         <Link href="/" legacyBehavior>
           <a data-active={isActive('/')}>
@@ -24,7 +25,7 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex items-center space-x-4">
-        <a>{userName}</a>
+        <a className='text-purple-300 font-extrabold'>{userName}</a>
         {/* Render Drafts links if authenticated */}
         {authenticated && (
           <Link href="/drafts" legacyBehavior>

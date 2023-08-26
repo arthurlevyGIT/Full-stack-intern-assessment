@@ -65,8 +65,7 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
   };
 
   return (
-    <div className="bg-gray-800 max-w-screen-md mx-auto my-10 py-2 rounded-md">
-      <h1 className='bg-gray-700 mx-3 mt-3 px-2 py-2 rounded-md font-bold text-lg'>{mainTitle}</h1>
+    <div className="bg-gray-800 max-w-screen-md mx-auto py-2 rounded-md">
       <form onSubmit={submitData}>
         <input
           autoFocus
