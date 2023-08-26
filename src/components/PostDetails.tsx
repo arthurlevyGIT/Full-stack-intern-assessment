@@ -1,10 +1,50 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { PostProps } from './Post';
 import styles from '../styles/Post.module.css';
 import ReactMarkdown from 'react-markdown';
+import { useAuth } from '../context/authContext';
 
-export default function PostDetails({ title, author, content, comments }: PostProps) {
+export default function PostDetails({ title, author, content, comments, id }: PostProps & { authenticated: boolean }) {
+  const [commentText, setCommentText] = useState('');
+  const { authenticated } = useAuth();
+
+  const handleCommentSubmit = async () => {
+    if (!authenticated) {
+      console.log("User is not authenticated.");
+      return;
+    }
+
+    const body = {
+      postId: id,
+      text: commentText,
+    };
+
+    try {
+      const userData = localStorage.getItem('userData');
+      if (!userData)
+        return;
+      const accessToken = JSON.parse(userData).accessToken;
+      const response = await fetch('/api/comment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (response.ok) {
+        // Handle successful comment submission
+        setCommentText('');
+      } else {
+        console.error('Failed to post comment:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error posting comment:', error);
+    }
+  };
+
   return (
     <div>
       <h2>{title}</h2>
@@ -20,6 +60,17 @@ export default function PostDetails({ title, author, content, comments }: PostPr
               <li key={index}>{comment.text}</li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {authenticated && (
+        <div className={styles.commentForm}>
+          <textarea
+            placeholder="Write your comment..."
+            value={commentText}
+            onChange={(e) => setCommentText(e.target.value)}
+          />
+          <button onClick={handleCommentSubmit}>Submit Comment</button>
         </div>
       )}
     </div>
