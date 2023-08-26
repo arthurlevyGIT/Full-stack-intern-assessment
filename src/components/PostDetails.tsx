@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react';
 import { PostProps } from './Post';
-import styles from '../styles/Post.module.css';
 import ReactMarkdown from 'react-markdown';
 import { useAuth } from '../context/authContext';
 
@@ -53,7 +52,7 @@ export default function PostDetails({ title, author, content, comments, id }: Po
       <ReactMarkdown>{content}</ReactMarkdown>
 
       {comments && comments.length > 0 && (
-        <div className={styles.comments}>
+        <div>
           <h3>Comments:</h3>
           <ul>
             {comments.map((comment, index) => (
@@ -67,7 +66,7 @@ export default function PostDetails({ title, author, content, comments, id }: Po
       )}
 
       {authenticated && (
-        <div className={styles.commentForm}>
+        <div>
           <textarea
             placeholder="Write your comment..."
             value={commentText}

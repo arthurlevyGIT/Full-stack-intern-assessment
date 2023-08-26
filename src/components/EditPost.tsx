@@ -1,8 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-// import styles from './styles/EditPost.module.css';
-import styles from '../styles/Draft.module.css'
 
 interface EditPostProps {
     post: any;
@@ -85,7 +83,7 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
           type="submit"
           value={isEditing ? 'Save Changes' : 'Create'}
         />
-        <a className={styles.back} href="/">
+        <a href="/">
           or Cancel
         </a>
       </form>

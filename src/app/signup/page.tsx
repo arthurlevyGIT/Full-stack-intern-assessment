@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import styles from '../../styles/SignUp.module.css'
 
 export default function SignUp() {
   const router = useRouter()
@@ -26,7 +25,7 @@ export default function SignUp() {
 
   return (
     <>
-      <div className={styles.page}>
+      <div>
         <form onSubmit={submitData}>
           <h1>Signup user</h1>
           <input
@@ -49,7 +48,7 @@ export default function SignUp() {
             value={password}
           />
           <input disabled={!name || !email || !password} type="submit" value="Signup" />
-          <a className={styles.back} href="/">
+          <a href="/">
             or Cancel
           </a>
         </form>

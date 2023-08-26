@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAuth } from '../context/authContext';
 import  Signout  from '../components/Signout'
-import styles from './Header.module.css'
 
 export default function Header() {
   const routePathName = usePathname()
@@ -23,9 +22,9 @@ export default function Header() {
 
   return (
     <nav>
-      <div className={styles.left}>
+      <div>
         <Link href="/" legacyBehavior>
-          <a className={styles.bold} data-active={isActive('/')}>
+          <a data-active={isActive('/')}>
             Blog
           </a>
         </Link>
@@ -36,7 +35,7 @@ export default function Header() {
           </Link>
         )}
       </div>
-      <div className={styles.right}>
+      <div>
         {/* Render Signup and Signin links if not authenticated */}
         {!authenticated && (
           <>

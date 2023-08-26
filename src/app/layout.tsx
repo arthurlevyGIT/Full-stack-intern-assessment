@@ -1,6 +1,5 @@
 import Header from '../components/Header'
 import { AuthProvider } from '../context/authContext'
-import '../styles/global.css'
 
 export default function RootLayout({
   children,

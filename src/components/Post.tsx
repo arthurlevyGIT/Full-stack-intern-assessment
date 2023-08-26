@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import styles from './Post.module.css';
 import { useAuth } from '../context/authContext';
 import type { Post, User } from '@prisma/client';
 import EditPost from './EditPost';
@@ -32,7 +31,7 @@ export default function Post({ post }: { post: PostProps }) {
   }
 
   return (
-    <div className={styles.post}>
+    <div>
       <h2>{post.title}</h2>
       <small>By {authorName}</small>
       {/* @ts-ignore */}
@@ -40,7 +39,7 @@ export default function Post({ post }: { post: PostProps }) {
       {/* Show the edit button only if the user is authenticated and is the owner of the post */}
       {authenticated && post.author?.id === userIdFromUserData && (
         <>
-          <button className={styles.editButton} onClick={handleEditClick}>
+          <button onClick={handleEditClick}>
             Edit
           </button>
           {/* Conditionally render the EditPost component when isEditing is true */}
@@ -49,7 +48,7 @@ export default function Post({ post }: { post: PostProps }) {
       )}
       {post.published && (
         <>
-          <button className={styles.editButton} onClick={handleWatchClick}>
+          <button onClick={handleWatchClick}>
             View more
           </button>
           {isWatchingPost && <PostDetails {...post} />}

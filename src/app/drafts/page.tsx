@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Post from '../../components/Post'
-import styles from '../../styles/Drafts.module.css'
 
 export default function Drafts() {
   const [drafts, setDrafts] = useState([]);
@@ -39,7 +38,7 @@ export default function Drafts() {
         <h1>Drafts</h1>
         <main>
           {drafts.map((post) => (
-            <div key={post.id} className={styles.post}>
+            <div key={post.id} >
               <Post post={post} />
             </div>
           ))}
