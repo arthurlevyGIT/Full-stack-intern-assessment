@@ -21,6 +21,8 @@ const Liste = mongoose.model("Liste", listeSchema);
 
 app.use(express.json());
 
+// -- // -- // -- // -- // -- // -- // -- // -- //
+
 app.post("/create", async (req, res) => {
   try {
     const { name, text, title } = req.body;
@@ -71,7 +73,7 @@ app.delete("/delete/:id", async (req, res) => {
   }
 });
 
-//Inscription
+//Inscription // -- // -- // -- // -- // -- // -- // -- // -- //
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -97,7 +99,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// Connexion
+// Connexion // -- // -- // -- // -- // -- // -- // -- // -- //
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
@@ -121,11 +123,13 @@ app.post("/login", async (req, res) => {
   }
 });
 
-//
+// -- // -- // -- // -- // -- // -- // -- // -- //
 
 app.all("*", (req, res) => {
   res.status(404).json("Cette route n'existe pas");
 });
+
+// -- // -- // -- // -- // -- // -- // -- // -- //
 
 const PORT = 3010;
 app.listen(PORT, () => {
