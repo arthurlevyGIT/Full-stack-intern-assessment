@@ -9,6 +9,9 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
     case "DELETE":
       return handleDELETE(postId, res, req);
 
+    case "GET":
+      return handleGET(postId, res);
+
     default:
       throw new Error(
         `The HTTP ${req.method} method is not supported at this route.`
@@ -16,13 +19,25 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
+async function handleGET(
+  postId: unknown,
+  res: NextApiResponse,
+) {
+  const post = await prisma.post.findUnique({
+    where: { id: Number(postId) },
+  });
+  if (!post) return res.status(404).json({ message: "Not Found"});
+
+  return res.status(200).json(post);
+}
+
 // DELETE /api/post/:id
 async function handleDELETE(
   postId: unknown,
   res: NextApiResponse<any>,
   req: NextApiRequest
 ) {
-  let post = await prisma.post.findUnique({
+  const post = await prisma.post.findUnique({
     where: { id: Number(postId) },
   });
 
