@@ -2,9 +2,10 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import styles from './Post.module.css';
-import { useAuth } from '../context/authContext'; // Import the auth context or hook
+import { useAuth } from '../context/authContext';
 import type { Post, User } from '@prisma/client';
-import EditPost from './EditPost'; // Import the EditPost component
+import EditPost from './EditPost';
+import PostDetails from './PostDetails';
 
 export type PostProps = Post & {
   author: User | null;
@@ -17,23 +18,20 @@ export default function Post({ post }: { post: PostProps }) {
   const userIdFromUserData = userData ? JSON.parse(userData).id : null;
 
   const [isEditing, setIsEditing] = useState(false); // State to track whether editing mode is active
+  const [isWatchingPost, setIsWatchingPost] = useState(false);
 
   const handleEditClick = () => {
     // Set the isEditing state to true when Edit button is clicked
     if (authenticated && post.author?.id === userIdFromUserData) {
-      setIsEditing(true);
+      setIsEditing(!isEditing);
     }
   };
 
-  // const handlePostClick = () => {
-  //   // Set the isEditing state to true when the post div is clicked
-  //   if (authenticated && post.author?.id === userIdFromUserData) {
-  //     setIsEditing(true);
-  //   }
-  // };
+  const handleWatchClick = () => {
+    setIsWatchingPost(!isWatchingPost);
+  }
 
   return (
-    // <div className={styles.post} onClick={handlePostClick}>
     <div className={styles.post}>
       <h2>{post.title}</h2>
       <small>By {authorName}</small>
@@ -43,13 +41,16 @@ export default function Post({ post }: { post: PostProps }) {
       {authenticated && post.author?.id === userIdFromUserData && (
         <>
           <button className={styles.editButton} onClick={handleEditClick}>
-          {/* <button className={styles.editButton}> */}
             Edit
           </button>
           {/* Conditionally render the EditPost component when isEditing is true */}
           {isEditing && <EditPost post={post} mainTitle="Edit Post" />}
         </>
       )}
+      <button className={styles.editButton} onClick={handleWatchClick}>
+        View more
+      </button>
+      {isWatchingPost && <PostDetails {...post} />}
     </div>
   );
 }
