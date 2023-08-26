@@ -23,7 +23,7 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
     }
   }, [initialPost]);
 
-  const submitData = async (e) => {
+  const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
       const userData = localStorage.getItem('userData');
@@ -52,13 +52,36 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
     }
   };
 
+  const handleDelete = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    try {
+      const userData = localStorage.getItem('userData');
+      if (!userData) return;
+
+      const response = await fetch(`/api/post/${initialPost.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${JSON.parse(userData).accessToken}`
+        }
+      });
+      if (response.ok) {
+        router.push('/');
+      } else {
+        console.error('Error while deleting post:', response.statusText);
+      }
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
   const handleButtonClick = () => {
     router.push('/');
   };
 
   const [isToggled, setIsToggled] = useState(false);
 
-  const handleToggle = (e) => {
+  const handleToggle = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setIsToggled(!isToggled);
     setPublished(!published)
@@ -97,6 +120,14 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
           >
             {isEditing ? 'Save Changes' : 'Create'}
           </button>
+          {isEditing && (
+            <button
+              onClick={handleDelete}
+              className="my-2 ml-2 p-1 border rounded-md border-gray-200"
+            >
+              Delete
+            </button>
+          )}
           <button
             onClick={handleButtonClick}
             className="my-2 ml-2 p-1 border rounded-md border-gray-200"
