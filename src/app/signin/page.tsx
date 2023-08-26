@@ -10,7 +10,7 @@ export default function SignIn() {
   const [errorMessage, setErrorMessage] = useState('');
   const { login } = useAuth();
 
-  const submitData = async (e: React.SyntheticEvent) => {
+  const handleSignin = async (e) => {
     e.preventDefault();
     try {
       const body = { email, password };
@@ -34,29 +34,46 @@ export default function SignIn() {
     }
   };
 
+  const handleButtonClick = () => {
+    router.push('/');
+  };
+
   return (
-    <>
-      <div>
-        <form onSubmit={submitData}>
-          <h1>Signin user</h1>
-          <input
-            autoFocus
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            type="text"
-            value={email}
-          />
-          <input
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            type="text"
-            value={password}
-          />
-          <input disabled={!email || !password} type="submit" value="Signin" />
+    <div className='mt-8 p-4'>
+      <h1 className='bg-gray-700 mx-auto mb-10 max-w-screen-md mt-3 px-2 py-2 rounded-md font-bold text-2xl'>
+        Signin user
+      </h1>
+      <form className="bg-gray-800 max-w-screen-md mx-auto py-2 rounded-md">
+        <input
+          autoFocus
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          type="text"
+          value={email}
+          className="bg-gray-800 mx-auto my-5 block border border-white-200 rounded-md"
+        />
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          type="text"
+          value={password}
+          className="bg-gray-800 mx-auto my-5 block border border-white-200 rounded-md"
+        />
+        <div className="mx-auto text-center">
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-          <a href="/">or Cancel</a>
-        </form>
-      </div>
-    </>
+          <button
+            disabled={!email || !password}
+            onClick={handleSignin}
+            className="my-2 ml-2 p-1 border rounded-md border-gray-200">
+            Signin
+          </button>
+          <button
+            onClick={handleButtonClick}
+            className="my-2 ml-2 p-1 border rounded-md border-gray-200">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
