@@ -1,0 +1,155 @@
+body {
+  background-image: url("../public/ok.jpg");
+  color: rgb(18, 43, 72);
+  padding: 5vh 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+section {
+  width: 80vw;
+  height: fit-content;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+section form {
+  background-color: rgba(255, 255, 255, 0.811);
+  margin: 10vh 0;
+  padding: 5vh;
+  border: 1vh solid white;
+  border-radius: 5vh;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 5vh;
+  font-size: 3em;
+}
+
+.Formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+}
+input {
+  background-color: rgba(255, 255, 255, 0.811);
+  width: 30vw;
+  margin: auto;
+  border: none;
+  border-radius: 5vh;
+  height: 5vh;
+  padding: 0 5vh;
+  box-sizing: border-box;
+  align-items: center;
+  text-align: center;
+}
+textarea {
+  background-color: rgba(255, 255, 255, 0.811);
+  width: 60vw;
+  margin: auto;
+  border: none;
+  padding: 3vh 5vh;
+  border-radius: 5vh;
+  box-sizing: border-box;
+}
+.LesCommentaires {
+  background-color: rgba(255, 255, 255, 0.811);
+  border-radius: 5vh;
+  border: 1vh solid rgba(255, 255, 255, 0.536);
+  padding: 5vh;
+  height: 60vh;
+  overflow-y: auto;
+}
+
+.LeCommentaire {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  height: fit-content;
+  line-height: 0.3;
+  margin: 1vw 4vw;
+  border: rgba(255, 255, 255, 0.324) solid 1vh;
+  border-radius: 5vh;
+}
+
+.LeCommentaire:hover {
+  border: rgba(255, 255, 255, 0.879) solid 1vh;
+}
+.LeCommentaire:hover p {
+  color: rgb(216, 85, 1);
+}
+.LeCommentaire:hover h3 {
+  color: rgb(125, 176, 203);
+}
+.LeCommentaire button {
+  border: none;
+  font-size: 3vh;
+  background-color: rgba(240, 248, 255, 0);
+}
+.Connexion {
+  width: fit-content;
+  border: none;
+  border-radius: 5vh;
+  padding: 1vh;
+}
+.Connexion:hover {
+  color: rgb(216, 85, 1);
+}
+.sidentifier {
+  width: 60vw;
+  margin: auto;
+  text-align: center;
+}
+.sidentifier > div {
+  background-color: rgba(255, 255, 255, 0.811);
+  border: black 1px solid;
+  margin: 5vh;
+  padding: 5vh;
+  align-items: center;
+}
+
+.sidentifier form label {
+  width: 10vw;
+}
+.sidentifier form input {
+  margin: 1vh;
+  align-items: center;
+  width: 20vw;
+}
+
+.ButtonBack {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+  font-size: 3vh;
+  color: rgb(216, 85, 1);
+}
+.LoginAndSignUp button {
+  border: none;
+  background-color: rgba(240, 248, 255, 0);
+  font-weight: bold;
+  font-size: 3vh;
+  color: rgb(125, 176, 203);
+}
+.LoginAndSignUp :first-child:hover {
+  color: rgb(216, 85, 1);
+}
+
+.LoginAndSignUp :last-child:hover {
+  color: rgb(216, 85, 1);
+}
+
+.LoginAndSignUp {
+  display: flex;
+  justify-content: space-around;
+}
