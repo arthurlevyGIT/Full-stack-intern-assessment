@@ -19,14 +19,23 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-async function handleGET(
-  postId: unknown,
-  res: NextApiResponse,
-) {
+// GET /api/post/:id
+async function handleGET(postId: unknown, res: NextApiResponse) {
   const post = await prisma.post.findUnique({
     where: { id: Number(postId) },
+    include: {
+      comments: true,
+      author: {
+        select: {
+          id: true,
+          email: true,
+          name: true,
+        },
+      },
+    },
   });
-  if (!post) return res.status(404).json({ message: "Not Found"});
+
+  if (!post) return res.status(404).json({ message: "Not Found" });
 
   return res.status(200).json(post);
 }
@@ -55,4 +64,11 @@ async function handleDELETE(
   return res.json(post);
 }
 
-export default authMiddleware(handle);
+// Apply authMiddleware only for non-GET requests
+export default (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method !== "GET") {
+    return authMiddleware(handle)(req, res);
+  } else {
+    return handle(req, res);
+  }
+};

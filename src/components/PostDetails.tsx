@@ -1,47 +1,27 @@
 'use client'
-import { useRouter } from "next/navigation"
-import { PostProps } from "./Post"
-import styles from '../styles/Post.module.css'
-import ReactMarkdown from 'react-markdown'
+import React from 'react';
+import { PostProps } from './Post';
+import styles from '../styles/Post.module.css';
+import ReactMarkdown from 'react-markdown';
 
-export default function PostDetails({ title, author, content, published, id }: PostProps) {
-  const router = useRouter()
-
-  async function publish(id: number) {
-    await fetch(`/api/publish/${id}`, {
-      method: 'PUT',
-    })
-    router.push('/')
-  }
-
-  async function destroy(id: number) {
-    await fetch(`/api/post/${id}`, {
-      method: 'DELETE',
-    })
-    router.push('/')
-  }
-
-  if (!published) {
-    title = `${title} (Draft)`
-  }
-
-
+export default function PostDetails({ title, author, content, comments }: PostProps) {
   return (
     <div>
       <h2>{title}</h2>
-      <p>By {author?.name || 'Unknown author'}</p>
+      <p>By {author?.name}</p>
       {/* @ts-ignore */}
       <ReactMarkdown>{content}</ReactMarkdown>
-      {!published && (
-        <button
-          className={styles.button} onClick={() => publish(id)}>
-          Publish
-        </button>
-      )}
-      <button className={styles.button} onClick={() => destroy(id)}>
-        Delete
-      </button>
-    </div>
 
-  )
+      {comments && comments.length > 0 && (
+        <div className={styles.comments}>
+          <h3>Comments:</h3>
+          <ul>
+            {comments.map((comment, index) => (
+              <li key={index}>{comment.text}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }

@@ -1,18 +1,38 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import { notFound, } from 'next/navigation'
-import prisma from '../../../lib/prisma'
 import PostDetails from '../../../components/PostDetails'
 
-export default async function Post({ params }: { params: { id: string } }) {
+export default function Post({ params }: { params: { id: string } }) {
+  const [post, setPost] = useState([]);
   const id = Number(
     Array.isArray(params?.id)
       ? params?.id[0]
       : params?.id,
   )
-  const post = await prisma.post.findUnique({
-    where: { id },
-    include: { author: true },
-  })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userData = localStorage.getItem('userData');
+        if (!userData) {
+          return;
+        }
+        const response = await fetch(`/api/post/${id}`, {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (response.status === 200) {
+          const post = await response.json();
+          setPost(post);
+        }
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   if (!post) notFound()
 
