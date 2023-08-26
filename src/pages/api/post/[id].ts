@@ -54,7 +54,8 @@ async function handlePATCH(
     where: { id: Number(postId) },
     data: {
       title: req.body.title,
-      content: req.body.content
+      content: req.body.content,
+      published: req.body.published
     },
   });
   return res.status(201).json(updatedPost);
