@@ -93,3 +93,9 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     return handle(req, res);
   }
 };
+
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+}
