@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAuth } from '../context/authContext';
-import  Signout  from '../components/Signout'
+import Signout from '../components/Signout'
 
 export default function Header() {
   const routePathName = usePathname()
@@ -14,28 +14,23 @@ export default function Header() {
   const userData = localStorage.getItem('userData');
   const userName = authenticated && userData ? JSON.parse(userData).name : null;
 
-  // TODO: Put this below in a css file
-  const inlineStyle = {
-    display: 'inline',
-    marginRight: '10px',
-  };
-
   return (
-    <nav>
+    <nav className='bg-gray-900 border-b border-gray-700 flex justify-between items-center py-3 px-4'>
       <div>
         <Link href="/" legacyBehavior>
           <a data-active={isActive('/')}>
-            Blog
+            Home
           </a>
         </Link>
+      </div>
+      <div className="flex items-center space-x-4">
+        <a>{userName}</a>
         {/* Render Drafts links if authenticated */}
         {authenticated && (
           <Link href="/drafts" legacyBehavior>
             <a data-active={isActive('/drafts')}>Drafts</a>
           </Link>
         )}
-      </div>
-      <div>
         {/* Render Signup and Signin links if not authenticated */}
         {!authenticated && (
           <>
@@ -50,11 +45,10 @@ export default function Header() {
         {/* Render Create draft link if authenticated */}
         {authenticated && (
           <>
-            <p style={inlineStyle}>{userName}</p>
             <Link href="/create" legacyBehavior>
               <a data-active={isActive('/create')}>+ Create draft</a>
             </Link>
-            <Signout/>
+            <Signout />
           </>
         )}
       </div>
