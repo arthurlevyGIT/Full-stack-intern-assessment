@@ -12,6 +12,8 @@ const handle = async (req: NextApiRequest, res: NextApiResponse) => {
     case "GET":
       return handleGET(postId, res);
 
+    case "PATCH":
+      return handlePATCH(postId, res, req);
     default:
       throw new Error(
         `The HTTP ${req.method} method is not supported at this route.`
@@ -40,6 +42,24 @@ async function handleGET(postId: unknown, res: NextApiResponse) {
   return res.status(200).json(post);
 }
 
+// PATCH /api/post/:id
+async function handlePATCH(
+  postId: unknown,
+  res: NextApiResponse,
+  req: NextApiRequest ) {
+  // TODO: Check that the destructured req.body contains non null values
+  const { title, content, published } = req.body;
+
+  const updatedPost = await prisma.post.update({
+    where: { id: Number(postId) },
+    data: {
+      title: req.body.title,
+      content: req.body.content
+    },
+  });
+  return res.status(201).json(updatedPost);
+}
+
 // DELETE /api/post/:id
 async function handleDELETE(
   postId: unknown,
@@ -66,7 +86,7 @@ async function handleDELETE(
 
 // Apply authMiddleware only for non-GET requests
 export default (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "GET") {
+  if (req.method !== "GET" && req.method !== "PATCH") {
     return authMiddleware(handle)(req, res);
   } else {
     return handle(req, res);

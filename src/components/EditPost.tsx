@@ -32,7 +32,7 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
       if (!userData) return;
 
       const body = { title, content, published };
-      const method = isEditing ? 'PUT' : 'POST';
+      const method = isEditing ? 'PATCH' : 'POST';
       const url = isEditing ? `/api/post/${initialPost.id}` : '/api/post';
 
       const response = await fetch(url, {
