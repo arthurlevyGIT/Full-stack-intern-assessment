@@ -47,10 +47,14 @@ export default function Post({ post }: { post: PostProps }) {
           {isEditing && <EditPost post={post} mainTitle="Edit Post" />}
         </>
       )}
-      <button className={styles.editButton} onClick={handleWatchClick}>
-        View more
-      </button>
-      {isWatchingPost && <PostDetails {...post} />}
+      {post.published && (
+        <>
+          <button className={styles.editButton} onClick={handleWatchClick}>
+            View more
+          </button>
+          {isWatchingPost && <PostDetails {...post} />}
+        </>
+      )}
     </div>
   );
 }
