@@ -2,6 +2,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { authMiddleware } from "../middleware/authMiddleware";
 import prisma from "../../../lib/prisma";
 
+// POST /api/comments
+// Body: { postId: number, text: string}
 const handle = async (
     req: NextApiRequest,
     res: NextApiResponse,

@@ -14,10 +14,6 @@ export default function Post({ params }: { params: { id: string } }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userData = localStorage.getItem('userData');
-        if (!userData) {
-          return;
-        }
         const response = await fetch(`/api/post/${id}`, {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
