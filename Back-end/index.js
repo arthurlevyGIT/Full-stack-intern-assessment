@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -6,10 +8,12 @@ const bcrypt = require("bcrypt");
 const app = express();
 app.use(cors());
 
-mongoose.connect(
-  "mongodb+srv://HerbillonMia:68Nr575aB7iSJnxd@herbillonmia.vsxvity.mongodb.net/Drafts",
-  { useNewUrlParser: true, useUnifiedTopology: true }
-);
+require("dotenv").config();
+
+mongoose.connect(process.env.MONGODB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const listeSchema = new mongoose.Schema({
   title: String,
