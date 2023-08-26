@@ -12,7 +12,11 @@ export default async function Home() {
           name: true,
         },
       },
-      comments: true,
+      comments: {
+        include: {
+          author: { select: { name: true, } }
+        }
+      },
     },
   });
 

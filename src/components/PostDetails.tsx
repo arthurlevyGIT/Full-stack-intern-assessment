@@ -57,7 +57,10 @@ export default function PostDetails({ title, author, content, comments, id }: Po
           <h3>Comments:</h3>
           <ul>
             {comments.map((comment, index) => (
-              <li key={index}>{comment.text}</li>
+              <li key={index}>
+                <strong>{comment.author?.name}: </strong>
+                {comment.text}
+              </li>
             ))}
           </ul>
         </div>
