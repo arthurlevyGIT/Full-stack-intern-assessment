@@ -1,27 +1,43 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import prisma from '../../../lib/prisma'
+import type { NextApiRequest, NextApiResponse } from "next";
+import { authMiddleware } from "../middleware/authMiddleware";
+import prisma from "../../../lib/prisma";
 
-export default async function handle(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
-  const postId = req.query.id
+const handle = async (req: NextApiRequest, res: NextApiResponse) => {
+  const postId = req.query.id;
 
   switch (req.method) {
-    case 'DELETE':
-      return handleDELETE(postId, res)
+    case "DELETE":
+      return handleDELETE(postId, res, req);
 
     default:
       throw new Error(
-        `The HTTP ${req.method} method is not supported at this route.`,
-      )
+        `The HTTP ${req.method} method is not supported at this route.`
+      );
   }
-}
+};
 
 // DELETE /api/post/:id
-async function handleDELETE(postId: unknown, res: NextApiResponse<any>) {
-  const post = await prisma.post.delete({
+async function handleDELETE(
+  postId: unknown,
+  res: NextApiResponse<any>,
+  req: NextApiRequest
+) {
+  let post = await prisma.post.findUnique({
     where: { id: Number(postId) },
-  })
-  return res.json(post)
+  });
+
+  if (!post) return res.status(404).json({ message: "Post Not Found" });
+
+  // Check if the user owns the post
+  if (post?.authorId === req.user.id) {
+    await prisma.post.delete({
+      where: { id: Number(postId) },
+    });
+  } else {
+    return res.status(403).json({ message: "Forbidden" });
+  }
+
+  return res.json(post);
 }
+
+export default authMiddleware(handle);
