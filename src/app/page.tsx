@@ -20,9 +20,11 @@ export default async function Home() {
     },
   });
 
+  const reversedFeed = feed.reverse();
+
   return (
     <>
-      {feed.map((post) => (
+      {reversedFeed.map((post) => (
         <div key={post.id}>
           <Post post={post} />
         </div>

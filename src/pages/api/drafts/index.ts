@@ -15,7 +15,7 @@ const handle = async function (
     where: { published: false, authorId: req.user.id },
     include: { author: true },
   });
-  return res.status(200).json(drafts);
+  return res.status(200).json(drafts.reverse());
 }
 
 export default authMiddleware(handle);
