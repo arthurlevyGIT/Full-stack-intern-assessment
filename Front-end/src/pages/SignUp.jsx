@@ -25,7 +25,7 @@ export default function SignUp() {
       });
       alert("Inscription réussie");
       console.log(response.data);
-      navigate("/connexion");
+      navigate("/login");
     } catch (error) {
       console.error("Erreur lors de l'inscription:", error);
     }

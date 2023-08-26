@@ -10,10 +10,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 section {
   width: 80vw;
   height: fit-content;
@@ -117,14 +113,30 @@ textarea {
   padding: 5vh;
   align-items: center;
 }
-
-.sidentifier form label {
-  width: 10vw;
+.sidentifier form {
+  width: 30vw;
+  /* border: solid black 1px; */
+  display: flex;
+  flex: 1;
+  margin: auto;
+  flex-direction: column;
 }
+
 .sidentifier form input {
   margin: 1vh;
   align-items: center;
-  width: 20vw;
+  width: 25vw;
+}
+
+.sidentifier form button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+  font-size: 3vh;
+  margin-top: 2vh;
+}
+.sidentifier form button:hover {
+  color: rgb(216, 85, 1);
 }
 
 .ButtonBack {
