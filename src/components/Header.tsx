@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAuth } from '../context/authContext';
@@ -11,8 +11,13 @@ export default function Header() {
     routePathName === pathname
 
   const { authenticated } = useAuth();
-  const userData = localStorage.getItem('userData');
-  const userName = authenticated && userData ? JSON.parse(userData).name : null;
+
+  const [userName, setUsername] = useState(null);
+  useEffect(() => {
+    const data = localStorage.getItem('userData');
+    if (data)
+      setUsername(authenticated && userData ? JSON.parse(userData).name : null)
+  }, []);
 
   return (
     <nav className='bg-gray-900 fixed top-0 left-0 right-0 border-b border-gray-700 flex justify-between items-center py-3 px-4'>

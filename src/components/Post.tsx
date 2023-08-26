@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useAuth } from '../context/authContext';
 import type { Post, User } from '@prisma/client';
@@ -13,16 +13,20 @@ export type PostProps = Post & {
 export default function Post({ post }: { post: PostProps }) {
   const { authenticated } = useAuth();
   const authorName = post.author ? post.author.name : 'Unknown author';
-  const userData = localStorage.getItem('userData');
-  const userIdFromUserData = userData ? JSON.parse(userData).id : null;
 
   const [isEditing, setIsEditing] = useState(false); // State to track whether editing mode is active
   const [isWatchingPost, setIsWatchingPost] = useState(false);
   const [viewMessage, setViewMessage] = useState('View more');
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const data = localStorage.getItem('userData');
+    setUserId(data ? JSON.parse(data).id : null);
+  }, []);
 
   const handleEditClick = () => {
     // Set the isEditing state to true when Edit button is clicked
-    if (authenticated && post.author?.id === userIdFromUserData) {
+    if (authenticated && post.author?.id === userId) {
       setIsEditing(!isEditing);
     }
   };
@@ -46,7 +50,7 @@ export default function Post({ post }: { post: PostProps }) {
         </>
       )}
       {/* Show the edit button only if the user is authenticated and is the owner of the post */}
-      {authenticated && post.author?.id === userIdFromUserData && (
+      {authenticated && post.author?.id === userId && (
         <>
           <button onClick={handleEditClick} className='block mx-auto my-2 p-1 border rounded-md border-gray-200'>
             Edit

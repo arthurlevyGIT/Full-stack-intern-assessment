@@ -1,5 +1,5 @@
 'use client'
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // This context is used to track if the user is authenticated or not
 const AuthContext = createContext({
@@ -9,12 +9,14 @@ const AuthContext = createContext({
 });
 
 export const AuthProvider = ({ children }) => {
-  const userData = localStorage.getItem('userData');
-  let isAuthenticated = false;
-  if (userData)
-    isAuthenticated = true;
+  const [authenticated, setAuthenticated] = useState(false);
 
-  const [authenticated, setAuthenticated] = useState(isAuthenticated);
+  useEffect(() => {
+    const data = localStorage.getItem('userData');
+    if (data)
+      setAuthenticated(true);
+  }, []);
+
 
   const login = () => setAuthenticated(true);
   const logout = () => setAuthenticated(false);
