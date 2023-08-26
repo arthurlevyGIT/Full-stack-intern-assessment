@@ -1,11 +1,15 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-// import styles from './EditPost.module.css';
+// import styles from './styles/EditPost.module.css';
 import styles from '../styles/Draft.module.css'
 
+interface EditPostProps {
+    post: any;
+    mainTitle: string;
+  }
 
-const EditPost = ({ post: initialPost = null }) => {
+const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [published, setPublished] = useState(false);
@@ -52,6 +56,7 @@ const EditPost = ({ post: initialPost = null }) => {
 
   return (
     <div>
+      <h1>{mainTitle}</h1>
       <form onSubmit={submitData}>
         <input
           autoFocus
