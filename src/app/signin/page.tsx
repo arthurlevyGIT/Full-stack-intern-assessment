@@ -10,7 +10,7 @@ export default function SignIn() {
   const [errorMessage, setErrorMessage] = useState('');
   const { login } = useAuth();
 
-  const handleSignin = async (e) => {
+  const handleSignin = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
       const body = { email, password };
@@ -34,7 +34,7 @@ export default function SignIn() {
     }
   };
 
-  const handleButtonClick = () => {
+  const handleCancel = () => {
     router.push('/');
   };
 
@@ -68,7 +68,7 @@ export default function SignIn() {
             Signin
           </button>
           <button
-            onClick={handleButtonClick}
+            onClick={handleCancel}
             className="my-2 ml-2 p-1 border rounded-md border-gray-200">
             Cancel
           </button>
