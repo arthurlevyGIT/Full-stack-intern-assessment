@@ -10,6 +10,7 @@ import ModalLogin from "./components/ModalLogin";
 import ModalSignup from "./components/ModalSignup";
 
 import Header from "./components/header";
+import Footer from "./components/Footer";
 
 export default function Draft() {
   const [authorEmail, setAuthorEmail] = useState("");
@@ -49,6 +50,7 @@ export default function Draft() {
           modalSignup={modalSignup}
         />
       )}
+      <Footer />
     </Router>
   );
 }
