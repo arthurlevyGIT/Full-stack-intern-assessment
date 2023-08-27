@@ -35,6 +35,7 @@ export default function PostDetails({ title, author, content, comments, id }: Po
 
       if (response.ok) {
         // Handle successful comment submission
+        window.location.reload();
         setCommentText('');
       } else {
         console.error('Failed to post comment:', response.statusText);

@@ -25,7 +25,7 @@ model Post {
   published Boolean  @default(false)
   viewCount Int      @default(0)
   comments  Comment[]
-  author    User?    @relation(fields: [authorId], references: [id])
+  author    User?    @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  Int?
 }
 
@@ -36,6 +36,6 @@ model Comment {
   text      String
   author    User     @relation(fields: [authorId], references: [id])
   authorId  Int
-  post      Post     @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    Int
 }

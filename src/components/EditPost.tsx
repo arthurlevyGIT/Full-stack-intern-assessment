@@ -42,6 +42,7 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null }) => {
       });
 
       if (response.ok) {
+        window.location.reload();
         router.push('/');
       } else {
         console.error('Error while saving post:', response.statusText);
@@ -64,6 +65,7 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null }) => {
         }
       });
       if (response.ok) {
+        window.location.reload();
         router.push('/');
       } else {
         console.error('Error while deleting post:', response.statusText);
