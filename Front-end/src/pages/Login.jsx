@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+
 export default function Login({ setModalLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +29,7 @@ export default function Login({ setModalLogin }) {
       navigate("/");
       console.log("Réponse de l'API:", response.data);
     } catch (error) {
-      console.error("Erreur lors de la connexion:", error);
+      console.error("Mauvais identifiant/mot de passe", error);
       alert("Mauvais identifiant/mot de passe");
     }
   };

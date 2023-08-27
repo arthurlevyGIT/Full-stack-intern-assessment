@@ -34,9 +34,9 @@ export default function SignUp({ setModalSignup }) {
       if (error.response && error.response.data.error) {
         setError(error.response.data.error);
       } else {
-        setError("Erreur lors de l'inscription.");
+        setError("Ce nom d'utilisateur est déjà pris.");
       }
-      console.error("Erreur lors de l'inscription:", error);
+      console.error("Ce nom d'utilisateur est déjà pris.", error);
     }
   };
 
