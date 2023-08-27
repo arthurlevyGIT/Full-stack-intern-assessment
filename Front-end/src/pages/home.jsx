@@ -4,10 +4,10 @@ import "../../src/index.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-export default function Home() {
+export default function Home({ setAuthorEmail, authorEmail }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [authorEmail, setAuthorEmail] = useState("");
+  // const [authorEmail, setAuthorEmail] = useState("");
   const [tasks, setTasks] = useState([]);
 
   const navigate = useNavigate();
@@ -52,19 +52,19 @@ export default function Home() {
     }
   };
 
-  const handleLogout = () => {
-    // Supprimer le cookie lors de la déconnexion
-    Cookies.remove("connexion");
-    navigate("/");
-    setAuthorEmail("");
-  };
+  // const handleLogout = () => {
+  //   // Supprimer le cookie lors de la déconnexion
+  //   Cookies.remove("connexion");
+  //   navigate("/");
+  //   setAuthorEmail("");
+  // };
 
-  // Vérifier si le cookie existe
-  const isLoggedIn = Cookies.get("connexion");
+  // // Vérifier si le cookie existe
+  // const isLoggedIn = Cookies.get("connexion");
 
   return (
     <section>
-      {isLoggedIn ? (
+      {/* {isLoggedIn ? (
         <button className="Connexion" onClick={handleLogout}>
           Se déconnecter
         </button>
@@ -72,9 +72,9 @@ export default function Home() {
         <button className="Connexion" onClick={() => navigate("/identify")}>
           Connexion/Inscription
         </button>
-      )}
+      )} */}
 
-      <h1>Les commentaires : </h1>
+      <h1> Les avis postés sur le blog : </h1>
       <div className="LesCommentaires">
         {tasks.length >= 1 ? (
           <div>
@@ -95,7 +95,7 @@ export default function Home() {
         )}
       </div>
       <form onSubmit={submitData}>
-        <h1>Laisse un commentaire :</h1>
+        <h1>Laissez-nous un avis :</h1>
         <div className="Formulaire">
           <input
             onChange={(e) => setAuthorEmail(e.target.value)}

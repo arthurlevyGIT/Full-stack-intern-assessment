@@ -1,13 +1,42 @@
 body {
-  background-image: url("../public/ok.jpg");
+  background-image: url("../public/ok7.jpg");
+
   color: rgb(18, 43, 72);
   padding: 5vh 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+  font-family: "Roboto", sans-serif;
+}
+.Header {
+  width: 80vw;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+  padding: 5vh 10vw;
+  margin-bottom: 3vh;
+  border-radius: 5vh;
+  border: 0.5vh solid rgba(230, 168, 195, 0.424);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.logo {
+  width: 10vw;
+  text-align: center;
+}
+.ButtonIdentify {
+  display: flex;
+  gap: 3vw;
+}
+.ButtonIdentify button {
+  background-color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.ButtonIdentify button:hover {
+  color: rgb(230, 168, 195);
 }
 
 section {
@@ -18,16 +47,18 @@ section {
   flex-direction: column;
 }
 section form {
-  background-color: rgba(255, 255, 255, 0.811);
+  background-color: rgba(255, 255, 255, 0);
   margin: 10vh 0;
   padding: 5vh;
-  border: 1vh solid white;
+  /* border: 1vh solid rgba(230, 168, 195, 0.424); */
   border-radius: 5vh;
 }
 h1 {
+  font-family: "Great Vibes", cursive;
   text-align: center;
   margin-bottom: 5vh;
-  font-size: 3em;
+  font-size: 4em;
+  color: white;
 }
 
 .Formulaire {
@@ -36,10 +67,11 @@ h1 {
   gap: 4vh;
 }
 input {
+  border: 0.5vh solid rgba(230, 168, 195, 0.424);
   background-color: rgba(255, 255, 255, 0.811);
   width: 30vw;
   margin: auto;
-  border: none;
+  /* border: none; */
   border-radius: 5vh;
   height: 5vh;
   padding: 0 5vh;
@@ -51,21 +83,24 @@ textarea {
   background-color: rgba(255, 255, 255, 0.811);
   width: 60vw;
   margin: auto;
-  border: none;
+  /* border: none; */
+  border: 0.5vh solid rgba(230, 168, 195, 0.424);
   padding: 3vh 5vh;
   border-radius: 5vh;
   box-sizing: border-box;
 }
 .LesCommentaires {
-  background-color: rgba(255, 255, 255, 0.811);
+  background-color: rgba(255, 255, 255, 0.619);
   border-radius: 5vh;
-  border: 1vh solid rgba(255, 255, 255, 0.536);
+  /* border: 1vh solid rgba(255, 255, 255, 0.536); */
+  border: 0.5vh solid rgba(230, 168, 195, 0.424);
   padding: 5vh;
   height: 60vh;
   overflow-y: auto;
 }
 
 .LeCommentaire {
+  background-color: rgba(255, 255, 255, 0.811);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -79,7 +114,7 @@ textarea {
 }
 
 .LeCommentaire:hover {
-  border: rgba(255, 255, 255, 0.879) solid 1vh;
+  border: white solid 1vh;
 }
 .LeCommentaire:hover p {
   color: rgb(216, 85, 1);
@@ -92,15 +127,7 @@ textarea {
   font-size: 3vh;
   background-color: rgba(240, 248, 255, 0);
 }
-.Connexion {
-  width: fit-content;
-  border: none;
-  border-radius: 5vh;
-  padding: 1vh;
-}
-.Connexion:hover {
-  color: rgb(216, 85, 1);
-}
+
 .sidentifier {
   width: 60vw;
   margin: auto;
