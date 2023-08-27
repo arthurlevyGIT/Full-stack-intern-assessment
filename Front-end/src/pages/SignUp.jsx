@@ -39,7 +39,7 @@ export default function SignUp() {
           navigate("/identify");
         }}
       >
-        ⏎ Come back
+        ⏎ Retour
       </button>
       <div>
         <h2>Inscription</h2>

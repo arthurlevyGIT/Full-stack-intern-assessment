@@ -10,7 +10,7 @@ export default function Identify() {
           navigate("/");
         }}
       >
-        ⏎ Come back
+        ⏎ Retour
       </button>
       <div className="LoginAndSignUp">
         <button

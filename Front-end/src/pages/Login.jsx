@@ -44,7 +44,7 @@ export default function Login() {
           navigate("/identify");
         }}
       >
-        ⏎ Come back
+        ⏎ Retour
       </button>
       <div>
         <h2>Connexion</h2>
