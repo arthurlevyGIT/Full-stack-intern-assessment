@@ -5,28 +5,41 @@ import { useNavigate } from "react-router-dom";
 export default function SignUp({ setModalSignup }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
+    setError("");
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+    setError("");
   };
 
   const handleSubmitInscription = async (event) => {
     event.preventDefault();
-    setModalSignup(true);
+
     try {
-      const response = await axios.post("http://localhost:3010/register", {
-        username,
-        password,
-      });
-      console.log(response.data);
-      navigate("/login");
+      const checkUserExists = await axios.get(
+        `http://localhost:3010/userExists/${username}`
+      );
+
+      if (checkUserExists.data.exists) {
+        setError("Ce nom d'utilisateur est déjà pris.");
+      } else {
+        const response = await axios.post("http://localhost:3010/register", {
+          username,
+          password,
+        });
+        console.log(response.data);
+        navigate("/login");
+        setModalSignup(true);
+      }
     } catch (error) {
+      alert("Nom déjà utilisé");
       console.error("Erreur lors de l'inscription:", error);
     }
   };
@@ -60,6 +73,7 @@ export default function SignUp({ setModalSignup }) {
               onChange={handlePasswordChange}
             />
           </div>
+          {error && <p style={{ color: "red" }}>{error}</p>}
           <button type="submit">S'inscrire</button>
         </form>
       </div>
