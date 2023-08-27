@@ -39,21 +39,21 @@ export default function SignUp() {
           placeholder="Name"
           type="text"
           value={name}
-          className="bg-gray-800 mx-auto my-5 block border border-white-200 rounded-md"
+          className="bg-gray-800 text-center mx-auto my-5 block border border-white-200 rounded-md"
         />
         <input
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email address"
           type="text"
           value={email}
-          className="bg-gray-800 mx-auto my-5 block border border-white-200 rounded-md"
+          className="bg-gray-800 text-center mx-auto my-5 block border border-white-200 rounded-md"
         />
         <input
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          type="text"
+          type="password"
           value={password}
-          className="bg-gray-800 mx-auto my-5 block border border-white-200 rounded-md"
+          className="bg-gray-800 text-center mx-auto my-5 block border border-white-200 rounded-md"
         />
         <div className="mx-auto text-center">
           <button

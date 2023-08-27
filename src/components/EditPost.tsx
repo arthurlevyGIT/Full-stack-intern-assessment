@@ -96,7 +96,7 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
           placeholder="Title"
           type="text"
           value={title}
-          className="bg-gray-800 mx-auto my-5 block border border-white-200 rounded-md"
+          className="bg-gray-800 text-center mx-auto my-5 block border border-white-200 rounded-md"
         />
         <textarea
           cols={50}
@@ -104,7 +104,7 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
           placeholder="Content"
           rows={8}
           value={content}
-          className="bg-gray-800 mx-auto my-3 block border border-white-200 rounded-md"
+          className="bg-gray-800 px-3 py-2 placeholder: mx-auto my-3 block border border-white-200 rounded-md"
         />
         <div className="mx-auto text-center">
           <button

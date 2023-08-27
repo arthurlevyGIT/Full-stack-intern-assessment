@@ -50,14 +50,14 @@ export default function SignIn() {
           placeholder="Email"
           type="text"
           value={email}
-          className="bg-gray-800 mx-auto my-5 block border border-white-200 rounded-md"
+          className="bg-gray-800 text-center mx-auto my-5 block border border-white-200 rounded-md"
         />
         <input
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          type="text"
+          type="password"
           value={password}
-          className="bg-gray-800 mx-auto my-5 block border border-white-200 rounded-md"
+          className="bg-gray-800 mx-auto text-center my-5 block border border-white-200 rounded-md"
         />
         <div className="mx-auto text-center">
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
