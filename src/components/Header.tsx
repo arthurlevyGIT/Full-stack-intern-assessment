@@ -20,11 +20,11 @@ export default function Header() {
   }, []);
 
   return (
-    <nav className='bg-gray-900 fixed top-0 left-0 right-0 border-b border-gray-700 flex justify-between items-center py-3 px-4'>
+    <nav className='bg-gray-900 fixed top-0 left-0 right-0 border-b border-gray-700 flex justify-between items-center py-3 px-4 '>
       {/* fp-4 text-white */}
       <div>
         <Link href="/" legacyBehavior>
-          <a data-active={isActive('/')}>
+          <a data-active={isActive('/')} className='hover:text-blue-500 transition-colors duration-300'>
             Home
           </a>
         </Link>
@@ -34,17 +34,17 @@ export default function Header() {
         {/* Render Drafts links if authenticated */}
         {authenticated && (
           <Link href="/drafts" legacyBehavior>
-            <a data-active={isActive('/drafts')}>Drafts</a>
+            <a data-active={isActive('/drafts')} className='hover:text-blue-500 transition-colors duration-300'>Drafts</a>
           </Link>
         )}
         {/* Render Signup and Signin links if not authenticated */}
         {!authenticated && (
           <>
             <Link href="/signup" legacyBehavior>
-              <a data-active={isActive('/signup')}>Signup</a>
+              <a data-active={isActive('/signup')} className='hover:text-blue-500 transition-colors duration-300'>Signup</a>
             </Link>
             <Link href="/signin" legacyBehavior>
-              <a data-active={isActive('/signin')}>Signin</a>
+              <a data-active={isActive('/signin')} className='hover:text-blue-500 transition-colors duration-300'>Signin</a>
             </Link>
           </>
         )}
@@ -52,7 +52,7 @@ export default function Header() {
         {authenticated && (
           <>
             <Link href="/create" legacyBehavior>
-              <a data-active={isActive('/create')}>Create draft</a>
+              <a data-active={isActive('/create')} className='hover:text-blue-500 transition-colors duration-300'>Create draft</a>
             </Link>
             <Signout />
           </>

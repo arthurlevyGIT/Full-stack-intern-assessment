@@ -76,7 +76,7 @@ export default function PostDetails({ title, author, content, comments, id }: Po
           <button
             onClick={handleCommentSubmit}
             disabled={commentText.trim() === ''}
-            className='block mx-auto my-2 p-1 border rounded-md border-gray-200'>
+            className='block mx-auto my-2 p-1 border rounded-md border-gray-200 hover:text-blue-500 hover:border-blue-500 transition-colors duration-300'>
               Submit your comment
             </button>
         </div>

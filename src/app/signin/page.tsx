@@ -64,12 +64,12 @@ export default function SignIn() {
           <button
             disabled={!email || !password}
             onClick={handleSignin}
-            className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200">
+            className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200 hover:text-blue-500 hover:border-blue-500 transition-colors duration-300">
             Signin
           </button>
           <button
             onClick={handleCancel}
-            className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200">
+            className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200 hover:text-blue-500 hover:border-blue-500 transition-colors duration-300">
             Cancel
           </button>
         </div>

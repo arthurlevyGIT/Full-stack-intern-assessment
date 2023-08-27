@@ -4,10 +4,9 @@ import { useRouter } from 'next/navigation';
 
 interface EditPostProps {
   post: any;
-  mainTitle: string;
 }
 
-const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle }) => {
+const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [published, setPublished] = useState(false);
@@ -79,11 +78,8 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
     router.push('/');
   };
 
-  const [isToggled, setIsToggled] = useState(false);
-
   const handleToggle = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setIsToggled(!isToggled);
     setPublished(!published)
   };
 
@@ -104,11 +100,11 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
           placeholder="Content"
           rows={8}
           value={content}
-          className="bg-gray-800 px-3 py-2 placeholder: mx-auto my-3 block border border-white-200 rounded-md"
+          className="bg-gray-800 px-3 py-2 placeholder: mx-auto my-3 block border border-white-200 rounded-md "
         />
         <div className="mx-auto text-center">
           <button
-            className={`my-2 mr-2 p-1 px-3 border rounded-md border-gray-200 cursor-pointer transition-colors duration-300 focus:outline-none ${isToggled ? 'bg-green-500' : 'bg-red-500'
+            className={`my-2 mr-2 p-1 px-3 border rounded-md border-gray-200 cursor-pointer duration-300 hover:text-blue-500 hover:border-blue-500 transition-colors duration-300 focus:outline-none ${published ? 'bg-green-500' : 'bg-red-500'
               }`}
             onClick={handleToggle}
           >
@@ -116,21 +112,21 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
           </button>
           <button
             disabled={!content || !title}
-            className="my-2 mr-2 ml-2 px-3 p-1 border rounded-md border-gray-200"
+            className="my-2 mr-2 ml-2 px-3 p-1 border rounded-md border-gray-200 hover:text-blue-500 hover:border-blue-500 transition-colors duration-300"
           >
             {isEditing ? 'Save Changes' : 'Create'}
           </button>
           {isEditing && (
             <button
               onClick={handleDelete}
-              className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200"
+              className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200 hover:text-blue-500 hover:border-blue-500 transition-colors duration-300"
             >
               Delete
             </button>
           )}
           <button
             onClick={handleButtonClick}
-            className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200"
+            className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200 hover:text-blue-500 hover:border-blue-500 transition-colors duration-300"
           >
             Cancel
           </button>
