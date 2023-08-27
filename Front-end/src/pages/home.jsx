@@ -37,6 +37,7 @@ export default function Home() {
       fetchData();
       setTitle("");
       setContent("");
+      setAuthorEmail("");
     } catch (error) {
       console.error(error);
     }
@@ -55,6 +56,7 @@ export default function Home() {
     // Supprimer le cookie lors de la déconnexion
     Cookies.remove("connexion");
     navigate("/");
+    setAuthorEmail("");
   };
 
   // Vérifier si le cookie existe
@@ -97,7 +99,7 @@ export default function Home() {
         <div className="Formulaire">
           <input
             onChange={(e) => setAuthorEmail(e.target.value)}
-            placeholder="Author (email address)"
+            placeholder="Author"
             type="text"
             value={authorEmail}
           />
