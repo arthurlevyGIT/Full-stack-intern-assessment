@@ -7,6 +7,7 @@ export default function Home({ setAuthorEmail, authorEmail }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [editingTask, setEditingTask] = useState(null);
 
   useEffect(() => {
     setAuthorEmail(Cookies.get("connexion") || "");
@@ -39,6 +40,27 @@ export default function Home({ setAuthorEmail, authorEmail }) {
     }
   };
 
+  const submitEdit = async (taskId) => {
+    try {
+      await axios.put(`http://localhost:3010/update/${taskId}`, {
+        title: title,
+        text: content,
+      });
+      fetchData();
+      setEditingTask(null);
+      setTitle("");
+      setContent("");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleEdit = (task) => {
+    setEditingTask(task._id);
+    setTitle(task.title);
+    setContent(task.text);
+  };
+
   const handleDeleteTask = async (taskId) => {
     try {
       await axios.delete(`http://localhost:3010/delete/${taskId}`);
@@ -58,10 +80,28 @@ export default function Home({ setAuthorEmail, authorEmail }) {
               <div key={task._id} className="LeCommentaire">
                 <div>
                   <h3>{task.name}</h3>
-                  <p>{task.text}</p>
+                  {editingTask === task._id ? (
+                    <div>
+                      <textarea
+                        className="Modification"
+                        cols={50}
+                        rows={8}
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                      />
+                      <button onClick={() => submitEdit(task._id)}>
+                        Valider
+                      </button>
+                    </div>
+                  ) : (
+                    <p>{task.text}</p>
+                  )}
                 </div>
-                <div>
+                <div className="buttonLeCommentaire">
                   <button onClick={() => handleDeleteTask(task._id)}>🗑️</button>
+                  {task.name === Cookies.get("connexion") && (
+                    <p onClick={() => handleEdit(task)}>Modifier</p>
+                  )}
                 </div>
               </div>
             ))}
