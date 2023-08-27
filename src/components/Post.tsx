@@ -7,17 +7,20 @@ import EditPost from './EditPost';
 import PostDetails from './PostDetails';
 
 export type PostProps = Post & {
-  author: User | null;
+  author: User;
 };
 
 export default function Post({ post }: { post: PostProps }) {
   const { authenticated } = useAuth();
-  const authorName = post.author ? post.author.name : 'Unknown author';
+  const authorName = post.author.name;
+  const createdAt = new Date(post.createdAt);
 
   const [isEditing, setIsEditing] = useState(false); // State to track whether editing mode is active
   const [isWatchingPost, setIsWatchingPost] = useState(false);
   const [viewMessage, setViewMessage] = useState('View more');
   const [userId, setUserId] = useState(null);
+  const months = ['January', 'February', 'March', 'April', 'May',
+  'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   useEffect(() => {
     const data = localStorage.getItem('userData');
@@ -44,7 +47,9 @@ export default function Post({ post }: { post: PostProps }) {
       {!isWatchingPost && (
         <>
           <h2 className='bg-gray-700 mx-3 mt-3 px-2 py-2 rounded-md font-bold text-lg'>{post.title}</h2>
-          <p className='mx-3 italic text-sm mt-1 mb-2'>By {authorName}</p>
+          <p className='mx-3 italic text-sm mt-1 mb-2'>
+            By {authorName}, it was created on {months[createdAt.getUTCMonth()]} {createdAt.getUTCDate()}, {createdAt.getUTCFullYear()} at {createdAt.getUTCHours()}:{createdAt.getUTCMinutes()}.
+          </p>
           {/* @ts-ignore */}
           <ReactMarkdown className='bg-gray-900 px-3 py-2 my-5 mx-3 rounded-md text-sky-500 font-medium'>{post.content}</ReactMarkdown>
         </>
