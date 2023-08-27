@@ -57,8 +57,8 @@ export default function Post({ post }: { post: PostProps }) {
       {/* Show the edit button only if the user is authenticated and is the owner of the post */}
       {authenticated && post.author?.id === userId && (
         <>
-          <button onClick={handleEditClick} className='block mx-auto my-2 p-1 border rounded-md border-gray-200'>
-            Edit
+          <button onClick={handleEditClick} className='block mx-auto px-3 my-2 p-1 border rounded-md border-gray-200'>
+            {isEditing ? 'I dont want to edit anymore' : 'Edit'}
           </button>
           {/* Conditionally render the EditPost component when isEditing is true */}
           {isEditing && <EditPost post={post} mainTitle="Edit Post" />}
@@ -67,7 +67,7 @@ export default function Post({ post }: { post: PostProps }) {
       {post.published && (
         <>
           {isWatchingPost && <PostDetails {...post} />}
-          <button onClick={handleWatchClick} className='block mx-auto my-2 p-1 border rounded-md border-gray-200'>
+          <button onClick={handleWatchClick} className='block px-3 mx-auto my-2 p-1 border rounded-md border-gray-200'>
             {viewMessage}
           </button>
         </>

@@ -108,7 +108,7 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
         />
         <div className="mx-auto text-center">
           <button
-            className={`my-2 mr-2 p-1 border rounded-md border-gray-200 cursor-pointer transition-colors duration-300 focus:outline-none ${isToggled ? 'bg-green-500' : 'bg-red-500'
+            className={`my-2 mr-2 p-1 px-3 border rounded-md border-gray-200 cursor-pointer transition-colors duration-300 focus:outline-none ${isToggled ? 'bg-green-500' : 'bg-red-500'
               }`}
             onClick={handleToggle}
           >
@@ -116,21 +116,21 @@ const EditPost: React.FC<EditPostProps> = ({ post: initialPost = null, mainTitle
           </button>
           <button
             disabled={!content || !title}
-            className="my-2 mr-2 ml-2 p-1 border rounded-md border-gray-200"
+            className="my-2 mr-2 ml-2 px-3 p-1 border rounded-md border-gray-200"
           >
             {isEditing ? 'Save Changes' : 'Create'}
           </button>
           {isEditing && (
             <button
               onClick={handleDelete}
-              className="my-2 ml-2 p-1 border rounded-md border-gray-200"
+              className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200"
             >
               Delete
             </button>
           )}
           <button
             onClick={handleButtonClick}
-            className="my-2 ml-2 p-1 border rounded-md border-gray-200"
+            className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200"
           >
             Cancel
           </button>

@@ -59,12 +59,12 @@ export default function SignUp() {
           <button
             disabled={!email || !password}
             onClick={handleSignup}
-            className="my-2 ml-2 p-1 border rounded-md border-gray-200">
+            className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200">
             Signup
           </button>
           <button
             onClick={handleCancel}
-            className="my-2 ml-2 p-1 border rounded-md border-gray-200">
+            className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200">
             Cancel
           </button>
         </div>

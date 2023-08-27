@@ -64,12 +64,12 @@ export default function SignIn() {
           <button
             disabled={!email || !password}
             onClick={handleSignin}
-            className="my-2 ml-2 p-1 border rounded-md border-gray-200">
+            className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200">
             Signin
           </button>
           <button
             onClick={handleCancel}
-            className="my-2 ml-2 p-1 border rounded-md border-gray-200">
+            className="my-2 ml-2 px-3 p-1 border rounded-md border-gray-200">
             Cancel
           </button>
         </div>
