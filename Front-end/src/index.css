@@ -48,15 +48,13 @@ section {
 }
 section form {
   background-color: rgba(255, 255, 255, 0);
-  margin: 10vh 0;
   padding: 5vh;
-  /* border: 1vh solid rgba(230, 168, 195, 0.424); */
   border-radius: 5vh;
 }
 h1 {
   font-family: "Great Vibes", cursive;
   text-align: center;
-  margin-bottom: 5vh;
+  margin-bottom: 10vh;
   font-size: 4em;
   color: black;
 }
@@ -92,7 +90,6 @@ textarea {
 .LesCommentaires {
   background-color: rgba(255, 255, 255, 0.619);
   border-radius: 5vh;
-  /* border: 1vh solid rgba(255, 255, 255, 0.536); */
   border: 0.5vh solid rgba(230, 168, 195, 0.424);
   padding: 5vh;
   height: 60vh;
