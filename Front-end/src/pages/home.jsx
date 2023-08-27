@@ -72,7 +72,7 @@ export default function Home({ setAuthorEmail, authorEmail }) {
 
   return (
     <section>
-      <h1> Les avis postés sur le blog : </h1>
+      <h1> Les avis postés sur le blog </h1>
       <div className="LesCommentaires">
         {tasks.length >= 1 ? (
           <div>
