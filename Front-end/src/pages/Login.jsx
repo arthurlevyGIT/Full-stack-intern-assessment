@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import Cookies from "js-cookie";
-export default function Login() {
+export default function Login({ setModalLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,14 +21,15 @@ export default function Login() {
 
   const handleSubmitConnexion = async (event) => {
     event.preventDefault();
+    setModalLogin(true);
     try {
       const response = await axios.post("http://localhost:3010/login", {
         username,
         password,
       });
-      navigate("/");
+
       Cookies.set("connexion", username);
-      alert("connexion réussi");
+      navigate("/");
       console.log("Réponse de l'API:", response.data);
     } catch (error) {
       console.error("Erreur lors de la connexion:", error);
@@ -41,7 +42,7 @@ export default function Login() {
       <button
         className="ButtonBack"
         onClick={() => {
-          navigate("/identify");
+          navigate("/");
         }}
       >
         ⏎ Retour

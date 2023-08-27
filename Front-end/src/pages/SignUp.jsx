@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function SignUp() {
+export default function SignUp({ setModalSignup }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,12 +18,12 @@ export default function SignUp() {
 
   const handleSubmitInscription = async (event) => {
     event.preventDefault();
+    setModalSignup(true);
     try {
       const response = await axios.post("http://localhost:3010/register", {
         username,
         password,
       });
-      alert("Inscription réussie");
       console.log(response.data);
       navigate("/login");
     } catch (error) {
@@ -36,7 +36,7 @@ export default function SignUp() {
       <button
         className="ButtonBack"
         onClick={() => {
-          navigate("/identify");
+          navigate("/");
         }}
       >
         ⏎ Retour

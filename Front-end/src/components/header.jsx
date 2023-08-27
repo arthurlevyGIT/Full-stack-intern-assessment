@@ -27,9 +27,11 @@ export default function Header({ setAuthorEmail }) {
         alt="logo"
       />
       {isLoggedIn ? (
-        <button className="Connexion" onClick={handleLogout}>
-          Se déconnecter
-        </button>
+        <div className="ButtonIdentify">
+          <button className="Connexion" onClick={handleLogout}>
+            Se déconnecter
+          </button>
+        </div>
       ) : (
         <div className="ButtonIdentify">
           <button className="Connexion" onClick={() => navigate("/login")}>
