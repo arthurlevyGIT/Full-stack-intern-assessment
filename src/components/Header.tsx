@@ -16,7 +16,7 @@ export default function Header() {
   useEffect(() => {
     const data = localStorage.getItem('userData');
     if (data)
-      setUsername(authenticated && userData ? JSON.parse(userData).name : null)
+      setUsername(authenticated && data ? JSON.parse(data).name : null)
   }, []);
 
   return (

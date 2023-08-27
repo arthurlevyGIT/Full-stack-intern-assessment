@@ -68,12 +68,17 @@ export default function PostDetails({ title, author, content, comments, id }: Po
       {authenticated && (
         <div className="mx-3flex items-center justify-center">
           <textarea
-            className="bg-gray-800 mx-auto my-2 block border border-white-200 rounded-md"
+            className="bg-gray-800 mx-auto my-2 px-3 py-2 block border border-white-200 rounded-md"
             placeholder="Write your comment..."
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
           />
-          <button onClick={handleCommentSubmit} className='block mx-auto my-2 p-1 border rounded-md border-gray-200'>Submit your comment</button>
+          <button
+            onClick={handleCommentSubmit}
+            disabled={commentText.trim() === ''}
+            className='block mx-auto my-2 p-1 border rounded-md border-gray-200'>
+              Submit your comment
+            </button>
         </div>
       )}
     </div>

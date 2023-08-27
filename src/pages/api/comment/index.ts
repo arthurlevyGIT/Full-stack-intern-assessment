@@ -29,3 +29,9 @@ const handle = async (
 }
 
 export default authMiddleware(handle);
+
+export const config = {
+    api: {
+      externalResolver: true,
+    },
+}
