@@ -23,23 +23,19 @@ export default function SignUp({ setModalSignup }) {
     event.preventDefault();
 
     try {
-      const checkUserExists = await axios.get(
-        `http://localhost:3010/userExists/${username}`
-      );
-
-      if (checkUserExists.data.exists) {
-        setError("Ce nom d'utilisateur est déjà pris.");
-      } else {
-        const response = await axios.post("http://localhost:3010/register", {
-          username,
-          password,
-        });
-        console.log(response.data);
-        navigate("/login");
-        setModalSignup(true);
-      }
+      const response = await axios.post("http://localhost:3010/register", {
+        username,
+        password,
+      });
+      console.log(response.data);
+      navigate("/login");
+      setModalSignup(true);
     } catch (error) {
-      alert("Nom déjà utilisé");
+      if (error.response && error.response.data.error) {
+        setError(error.response.data.error);
+      } else {
+        setError("Erreur lors de l'inscription.");
+      }
       console.error("Erreur lors de l'inscription:", error);
     }
   };
