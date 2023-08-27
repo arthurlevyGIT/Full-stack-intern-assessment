@@ -20,6 +20,9 @@ export default function Header({ setAuthorEmail }) {
   return (
     <div className="Header">
       <img
+        onClick={() => {
+          navigate("/");
+        }}
         className="logo"
         src="https://www.getlazo.app/big-logo.svg"
         alt="logo"

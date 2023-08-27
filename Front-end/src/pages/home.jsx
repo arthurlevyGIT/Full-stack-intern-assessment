@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../src/index.css";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
 
 export default function Home({ setAuthorEmail, authorEmail }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [tasks, setTasks] = useState([]);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     setAuthorEmail(Cookies.get("connexion") || "");
