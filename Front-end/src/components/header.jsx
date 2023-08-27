@@ -6,13 +6,11 @@ export default function Header({ setAuthorEmail }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Supprimer le cookie lors de la déconnexion
     Cookies.remove("connexion");
-    setAuthorEmail(""); // Réinitialiser l'email de l'auteur
+    setAuthorEmail("");
     navigate("/");
   };
 
-  // Vérifier si le cookie existe
   const isLoggedIn = Cookies.get("connexion");
 
   useEffect(() => {

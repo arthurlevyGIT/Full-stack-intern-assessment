@@ -15,10 +15,10 @@ export default function ModalLogin({ setModalLogin }) {
     <div>
       <div className="modal">
         <div className="modal-content">
-          <span className="close" onClick={closeModal}>
-            &times;
-          </span>
           <h2>Connexion réussie !</h2>
+          <span className="close" onClick={closeModal}>
+            Poursuivre sur le site
+          </span>
         </div>
       </div>
     </div>

@@ -17,17 +17,14 @@ export default function Login({ setModalLogin }) {
     setPassword(event.target.value);
   };
 
-  // Connexion // -- // -- // -- // -- // -- // -- // -- // -- //
-
   const handleSubmitConnexion = async (event) => {
     event.preventDefault();
-    setModalLogin(true);
     try {
       const response = await axios.post("http://localhost:3010/login", {
         username,
         password,
       });
-
+      setModalLogin(true);
       Cookies.set("connexion", username);
       navigate("/");
       console.log("Réponse de l'API:", response.data);
