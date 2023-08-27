@@ -16,7 +16,7 @@ export default function Comment({ postId }: CommmentProps) {
     };
 
     try {
-      const response = await fetch(`/api/comment?id=${postId}`, {
+      const response = await fetch(`/api/comment/${postId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

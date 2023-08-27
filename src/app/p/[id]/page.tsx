@@ -2,7 +2,7 @@ import React from 'react'
 import { notFound, } from 'next/navigation'
 import prisma from '../../../lib/prisma'
 import PostDetails from '../../../components/PostDetails'
-import Comment from '../../comment/comment'
+import Comment from '../../../components/comment'
 
 export default async function Post({ params }: { params: { id: string } }) {
   const id = Number(
