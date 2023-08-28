@@ -1,0 +1,236 @@
+body {
+  background-image: url("../public/image.jpg");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  color: rgb(18, 43, 72);
+  padding: 5vh 0;
+  margin: 0;
+
+  font-family: "Akatab", sans-serif;
+}
+.Header {
+  width: 80vw;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+  padding: 5vh 10vw;
+  margin-bottom: 3vh;
+  border-radius: 5vh;
+  border: 0.5vh solid rgba(230, 168, 195, 0.424);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.logo {
+  width: 5em;
+  text-align: center;
+}
+.ButtonIdentify {
+  display: flex;
+  margin-top: 1vh;
+  /* gap: 1em; */
+}
+.ButtonIdentify button {
+  background-color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.ButtonIdentify button:hover {
+  color: rgb(230, 168, 195);
+}
+
+section {
+  width: 80vw;
+  height: fit-content;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+section form {
+  background-color: rgba(255, 255, 255, 0);
+  padding: 5vh;
+  border-radius: 5vh;
+}
+h1 {
+  font-family: "Great Vibes", cursive;
+  text-align: center;
+  margin-bottom: 10vh;
+  font-size: 4em;
+  color: rgba(0, 0, 0, 0.739);
+}
+
+.Formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+}
+input {
+  border: 0.5vh solid rgba(230, 168, 195, 0.424);
+  background-color: rgba(255, 255, 255, 0.811);
+  width: 30vw;
+  margin: auto;
+  border-radius: 5vh;
+  height: 5vh;
+  padding: 0 5vh;
+  box-sizing: border-box;
+  align-items: center;
+  text-align: center;
+}
+textarea {
+  background-color: rgba(255, 255, 255, 0.811);
+  width: 60vw;
+  margin: auto;
+  border: 0.5vh solid rgba(230, 168, 195, 0.424);
+  padding: 3vh 5vh;
+  border-radius: 5vh;
+  box-sizing: border-box;
+}
+.LesCommentaires {
+  background-color: rgba(255, 255, 255, 0.619);
+  border-radius: 5vh;
+  border: 0.5vh solid rgba(230, 168, 195, 0.424);
+  padding: 5vh;
+  height: 60vh;
+  overflow-y: scroll;
+  font-size: 1em;
+  flex-wrap: wrap;
+}
+.LeCommentaire h3 {
+  margin-bottom: 0;
+}
+.LeCommentaire p {
+  margin-top: 0;
+}
+
+.LeCommentaire {
+  background-color: rgba(255, 255, 255, 0.811);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  height: fit-content;
+  margin: 1.5vw 4vw;
+  border: rgba(255, 255, 255, 0.324) solid 1vh;
+  border-radius: 5vh;
+  overflow-wrap: break-word;
+}
+
+.LeCommentaire:hover {
+  border: white solid 1vh;
+}
+.LeCommentaire:hover p {
+  color: rgb(230, 168, 195);
+}
+.LeCommentaire:hover h3 {
+  color: rgb(254, 46, 124);
+  font-weight: bold;
+}
+.LeCommentaire button {
+  border: none;
+  font-size: 1em;
+  background-color: rgba(240, 248, 255, 0);
+}
+
+.sidentifier {
+  width: fit-content;
+  margin: auto;
+  text-align: center;
+}
+.sidentifier > div {
+  background-color: rgba(255, 255, 255, 0.811);
+  border: black 1px solid;
+  margin: 5vh;
+  padding: 5vh;
+  align-items: center;
+}
+.sidentifier form {
+  width: fit-content;
+  margin: auto;
+}
+
+.sidentifier form input {
+  margin: 1vh;
+  width: 15vw;
+}
+
+.sidentifier form button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+  font-size: 1em;
+  margin-top: 2vh;
+}
+.sidentifier form button:hover {
+  color: rgb(230, 168, 195);
+}
+
+.ButtonBack {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+  font-size: 3vh;
+  color: black;
+}
+
+/* Style pour la modal */
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Contenu de la modal */
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%;
+  position: relative;
+  text-align: center;
+  font-family: "Great Vibes", cursive;
+  font-size: 5vh;
+}
+
+/* Bouton de fermeture */
+.close {
+  color: rgb(230, 168, 195);
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.Modification {
+  width: 100%;
+  height: 10vh;
+  margin: 2vh 0;
+}
+.buttonLeCommentaire {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+}
+
+.Footer {
+  text-align: center;
+  font-size: 0.7em;
+  margin-top: 25vh;
+}
