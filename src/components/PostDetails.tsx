@@ -59,17 +59,19 @@ export default function PostDetails({ title, author, content, published, id }: P
       <button className={styles.button} onClick={() => destroy(id)}>
         Delete
       </button>
-	  <form onSubmit={submitComment}>
-	  	<textarea
-			onChange={(e) => setComContent(e.target.value)}
-			placeholder="Leave a comment"
-			value={comContent}
-		/>
-		<input
-			disabled={!comContent}
-			type="submit"
-	  	/>			
-	  </form>
+	  {published == true && (
+			<form onSubmit={submitComment}>
+	  		<textarea
+				onChange={(e) => setComContent(e.target.value)}
+				placeholder="Leave a comment"
+				value={comContent}
+				/>
+			<input
+				disabled={!comContent}
+				type="submit"
+				/>			
+	  		</form>
+	  )}
     </div>
 
   )

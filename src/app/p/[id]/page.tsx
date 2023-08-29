@@ -25,12 +25,14 @@ export default async function Post({ params }: { params: { id: string } }) {
   return (
 	<div>
     	<PostDetails {...post} />
-		<h3>Comments</h3>
+		{post.published && (
+			<h3>Comments</h3>
+		)}
 		{comments.map((comment) => (
 			<div key={comment.id}>
-				<Comment comment={comment} />
+			<Comment comment={comment} />
 			</div>
-		))}
+			))}
 	</div>
   )
 }
