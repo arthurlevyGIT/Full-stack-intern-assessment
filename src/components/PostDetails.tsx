@@ -3,9 +3,11 @@ import { useRouter } from "next/navigation"
 import { PostProps } from "./Post"
 import styles from '../styles/Post.module.css'
 import ReactMarkdown from 'react-markdown'
+import { useState } from 'react'
 
 export default function PostDetails({ title, author, content, published, id }: PostProps) {
   const router = useRouter()
+  const [comContent, setComContent] = useState('')
 
   async function publish(id: number) {
     await fetch(`/api/publish/${id}`, {
@@ -21,6 +23,22 @@ export default function PostDetails({ title, author, content, published, id }: P
     router.push('/')
   }
 
+	async function submitComment(e: React.SyntheticEvent) {
+		e.preventDefault()
+		try {
+			const body = { content: comContent, postId: id }
+			await fetch(`/api/comment/${id}`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(body),
+			})
+			window.location.reload()
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
+	
   if (!published) {
     title = `${title} (Draft)`
   }
@@ -41,6 +59,19 @@ export default function PostDetails({ title, author, content, published, id }: P
       <button className={styles.button} onClick={() => destroy(id)}>
         Delete
       </button>
+	  {published == true && (
+			<form onSubmit={submitComment}>
+	  		<textarea
+				onChange={(e) => setComContent(e.target.value)}
+				placeholder="Leave a comment"
+				value={comContent}
+				/>
+			<input
+				disabled={!comContent}
+				type="submit"
+				/>			
+	  		</form>
+	  )}
     </div>
 
   )

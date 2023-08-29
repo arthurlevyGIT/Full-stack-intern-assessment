@@ -2,6 +2,7 @@ import React from 'react'
 import { notFound, } from 'next/navigation'
 import prisma from '../../../lib/prisma'
 import PostDetails from '../../../components/PostDetails'
+import Comment from '../../../components/Comment'
 
 export default async function Post({ params }: { params: { id: string } }) {
   const id = Number(
@@ -14,9 +15,24 @@ export default async function Post({ params }: { params: { id: string } }) {
     include: { author: true },
   })
 
+  const comments = await prisma.comment.findMany({
+	where: { postId: id },
+	include: { author: true },
+  })
+
   if (!post) notFound()
 
   return (
-    <PostDetails {...post} />
+	<div>
+    	<PostDetails {...post} />
+		{post.published && (
+			<h3>Comments</h3>
+		)}
+		{comments.map((comment) => (
+			<div key={comment.id}>
+			<Comment comment={comment} />
+			</div>
+			))}
+	</div>
   )
 }
