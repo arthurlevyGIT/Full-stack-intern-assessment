@@ -1,20 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../lib/prisma";
 
-// POST /api/post
-// Required fields in body: title, authorEmail
+// COMMENT /api/comment
+// Required fields in body: authorEmail
 // Optional fields in body: content
 export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { title, content, authorEmail } = req.body;
-  const result = await prisma.post.create({
+  const { content, authorEmail, postId } = req.body;
+
+  const result = await prisma.comment.create({
     data: {
-      title: title,
       content: content,
       author: { connect: { email: authorEmail } },
+      postDetail: { connect: { id: parseInt(postId) } },
     },
   });
+  //console.log(result);
   return res.status(201).json(result);
 }

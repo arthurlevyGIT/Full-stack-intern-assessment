@@ -12,6 +12,7 @@ model User {
   email String  @unique
   name  String?
   posts Post[]
+  comments Comment []
 }
 
 model Post {
@@ -32,6 +33,9 @@ model Comment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   content   String?
-  postDetail Post?  @relation(fields: [postId], references: [id])
-  postId  Int?
+  postDetail Post ? @relation(fields: [postId], references: [id])
+  postId  Int ?
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
 }
+

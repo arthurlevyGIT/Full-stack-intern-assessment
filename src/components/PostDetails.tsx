@@ -45,35 +45,6 @@ export default function PostDetails({
       <button className={styles.button} onClick={() => destroy(id)}>
         Delete
       </button>
-      {/* FORM comment section */}
-      <div className={styles.commentContainer}>
-        <div className={styles.commentSection}>
-          <p className="CounterComments">11 comments</p>
-          <p>Name</p>
-          <p>
-            Example : Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Sequi neque harum soluta! Temporibus exercitationem cumque porro
-            mollitia. Odio ipsa provident nihil voluptas fugit et dicta, a
-            maiores, debitis omnis, incidunt rem adipisci sapiente? Blanditiis
-            nam mollitia incidunt ex itaque saepe ullam voluptatibus, velit
-            fugit recusandae, accusamus, id reiciendis reprehenderit rerum.
-          </p>
-        </div>
-        <h3>Post a comment</h3>
-        <form className={styles.formCommentContainer}>
-          <input
-            type="text"
-            name="author"
-            placeholder="Name"
-            className={styles.commentFormName}
-          />
-          <textarea
-            className={styles.commentFormComment}
-            placeholder="Comment"
-          />
-          <button>Post a comment</button>
-        </form>
-      </div>
     </div>
   );
 }
