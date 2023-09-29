@@ -13,10 +13,13 @@ export default async function Post({ params }: { params: { id: string } }) {
 
   if (!post) notFound();
 
+  const allComments = await prisma.comment.findMany();
+  const userInfo = await prisma.user.findMany();
+
   return (
     <>
       <PostDetails {...post} />
-      <Comment postId={id} />
+      <Comment postId={id} allComments={allComments} userInfo={userInfo} />
     </>
   );
 }

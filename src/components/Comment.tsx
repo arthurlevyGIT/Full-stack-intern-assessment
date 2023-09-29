@@ -6,9 +6,11 @@ import { useState } from "react";
 
 interface typeProp {
   postId: number;
+  allComments: any;
+  userInfo: any;
 }
 
-const Comment = ({ postId }: typeProp) => {
+const Comment = ({ postId, allComments, userInfo }: typeProp) => {
   const [content, setContent] = useState("");
   const [authorEmail, setAuthorEmail] = useState("");
 
@@ -26,19 +28,41 @@ const Comment = ({ postId }: typeProp) => {
     }
   };
 
+  // console.log(allComments);
+  // console.log(postId);
+
+  function getCommentByPostId(postId: number) {
+    let tab = allComments.filter((it: any) => it.postId === postId);
+    return tab;
+  }
+
+  function commentName(authorId: number) {
+    for (let i = 0; i < userInfo.length; i++) {
+      if (userInfo[i].id === authorId) {
+        return userInfo[i].name;
+      }
+    }
+  }
   return (
     <div className={styles.commentContainer}>
       <div className={styles.commentSection}>
-        <p className="CounterComments">11 comments</p>
-        <p>Name</p>
-        <p>
-          Example : Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Sequi neque harum soluta! Temporibus exercitationem cumque porro
-          mollitia. Odio ipsa provident nihil voluptas fugit et dicta, a
-          maiores, debitis omnis, incidunt rem adipisci sapiente? Blanditiis nam
-          mollitia incidunt ex itaque saepe ullam voluptatibus, velit fugit
-          recusandae, accusamus, id reiciendis reprehenderit rerum.
+        <p className="CounterComments">
+          {getCommentByPostId(postId).length > 1
+            ? `${getCommentByPostId(postId).length} Comments`
+            : `${getCommentByPostId(postId).length} Comment`}
         </p>
+        {/* TS a rectifier */}
+        {getCommentByPostId(postId).length === 0
+          ? ""
+          : getCommentByPostId(postId).map((comment: any) => (
+              <div key={comment.id}>
+                <li>{comment.content}</li>
+                <div className="otherInformations">
+                  <span>{commentName(comment.authorId)} -</span>
+                  <span> {comment.createdAt.toLocaleString()}</span>
+                </div>
+              </div>
+            ))}
       </div>
       <h3>Post a comment</h3>
       <form onSubmit={submitComment} className={styles.formCommentContainer}>
@@ -46,7 +70,7 @@ const Comment = ({ postId }: typeProp) => {
           type="text"
           name="author"
           onChange={(e) => setAuthorEmail(e.target.value)}
-          placeholder="Name"
+          placeholder="Email"
           className={styles.commentFormName}
           value={authorEmail}
         />
