@@ -73,11 +73,36 @@ nav {
     padding: 1.5rem 1rem;
   }
 }
+@media(min-width: 1024px) {
+  nav {
+    padding: 1.5rem 5rem;
+  }
+}
 
 nav a {
   text-decoration: none;
   color: var(--primrary-color);
   display: inline-block;
+  
+  position: relative;
+}
+
+nav a:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: -2px;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: var(--secondary-color);
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+nav a:hover:after { 
+  width: 100%; 
+  left: 0; 
 }
 
 nav a:first-of-type {

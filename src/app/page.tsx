@@ -8,12 +8,12 @@ export default async function Home() {
     include: { author: true },
   })
   return (
-    <>
+    <div className={styles.grid}>
       {feed.map((post) => (
         <div key={post.id} className={styles.card}>
           <Post post={post}/>
         </div>
       ))}
-    </>
+    </div>
   )
 }
