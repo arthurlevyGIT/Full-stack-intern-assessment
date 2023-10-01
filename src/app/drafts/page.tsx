@@ -1,13 +1,14 @@
-import React from 'react'
-import Post from '../../components/Post'
-import prisma from '../../lib/prisma'
-import styles from '../../styles/Drafts.module.css'
+import React from "react";
+import Post from "../../components/Post";
+import prisma from "../../lib/prisma";
+import styles from "../../styles/Drafts.module.css";
 
 async function Drafts() {
   const drafts = await prisma.post.findMany({
     where: { published: false },
     include: { author: true },
-  })
+  });
+
   return (
     <>
       <div>
@@ -21,7 +22,7 @@ async function Drafts() {
         </main>
       </div>
     </>
-  )
+  );
 }
 
 export default Drafts;

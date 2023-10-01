@@ -17,6 +17,6 @@ export default async function handle(
       postDetail: { connect: { id: parseInt(postId) } },
     },
   });
-  console.log(result);
+
   return res.status(201).json(result);
 }

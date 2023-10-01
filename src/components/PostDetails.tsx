@@ -17,6 +17,7 @@ export default function PostDetails({
     await fetch(`/api/publish/${id}`, {
       method: "PUT",
     });
+    router.refresh();
     router.push("/");
   }
 
@@ -24,6 +25,7 @@ export default function PostDetails({
     await fetch(`/api/post/${id}`, {
       method: "DELETE",
     });
+    router.refresh();
     router.push("/");
   }
 
