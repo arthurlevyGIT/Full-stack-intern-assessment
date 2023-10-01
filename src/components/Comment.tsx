@@ -23,6 +23,11 @@ const fetcher = async (url: string) => {
   return data;
 };
 
+function isValidEmail(email: string): boolean {
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return emailRegex.test(email);
+}
+
 const Comment = ({ postId, userInfo }: typeProp) => {
   const [content, setContent] = useState("");
   const [authorEmail, setAuthorEmail] = useState("");
@@ -41,6 +46,11 @@ const Comment = ({ postId, userInfo }: typeProp) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
+      isValidEmail(authorEmail);
+      if (!isValidEmail(authorEmail)) {
+        alert("Please enter a valid e-mail");
+        return;
+      }
       if (response.status === 500) {
         const errorElement = document.getElementById("errorMsg");
         if (errorElement) {

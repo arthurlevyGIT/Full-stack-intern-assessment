@@ -13,7 +13,7 @@ async function Drafts() {
     <>
       <div>
         <h1>Drafts</h1>
-        <main>
+        <main className={styles.draftContainer}>
           {drafts.map((post) => (
             <div key={post.id} className={styles.post}>
               <Post post={post} />

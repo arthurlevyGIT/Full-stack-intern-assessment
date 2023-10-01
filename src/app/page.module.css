@@ -1,3 +1,4 @@
+
 .main {
   display: flex;
   flex-direction: column;
@@ -5,7 +6,15 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  
 }
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+  }
 
 .description {
   display: inherit;
@@ -107,6 +116,14 @@
 .logo {
   position: relative;
 }
+.containerForAllArticles{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
@@ -200,6 +217,8 @@
     );
     z-index: 1;
   }
+
+  
 }
 
 /* Tablet and Smaller Desktop */
