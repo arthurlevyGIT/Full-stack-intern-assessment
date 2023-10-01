@@ -39,7 +39,7 @@ export default function PostDetails({ title, author, content, published, id, com
 
   return (
     <div>
-      <h2>{title}</h2>
+      <h2 className={styles.h2}>{title}</h2>
       <p>By {author?.name || 'Unknown author'}</p>
       {/* @ts-ignore */}
       <ReactMarkdown>{content}</ReactMarkdown>

@@ -1,5 +1,5 @@
 .post {
-  color: inherit;
+  color: var(--bodytext-color);
   text-decoration: none;
   padding: 2rem;
 }

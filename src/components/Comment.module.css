@@ -1,0 +1,4 @@
+.comment {
+    padding: 0 0 1rem 0;
+    border-bottom: 1px solid var(--primrary-color-hover2);
+}
