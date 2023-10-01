@@ -3,9 +3,14 @@ import { useRouter } from "next/navigation"
 import { PostProps } from "./Post"
 import styles from '../styles/Post.module.css'
 import ReactMarkdown from 'react-markdown'
+import Comment from "./Comment"
+import CommentForm from "./CommentForm"
 
-export default function PostDetails({ title, author, content, published, id }: PostProps) {
+export default function PostDetails({ title, author, content, published, id, comments }: PostProps) {
   const router = useRouter()
+
+  const loggedInUser = window.localStorage.getItem("user")
+  const parsedUser = loggedInUser ? JSON.parse(loggedInUser) : null;
 
   async function publish(id: number) {
     await fetch(`/api/publish/${id}`, {
@@ -19,6 +24,12 @@ export default function PostDetails({ title, author, content, published, id }: P
       method: 'DELETE',
     })
     router.push('/')
+  }
+
+  async function comment(id: number) {
+    await fetch(`/api/comments`, {
+      method: 'GET',
+    })
   }
 
   if (!published) {
@@ -41,6 +52,15 @@ export default function PostDetails({ title, author, content, published, id }: P
       <button className={styles.button} onClick={() => destroy(id)}>
         Delete
       </button>
+      {comments && comments.map((comment, index) => (
+        comment ? <Comment key={index} comment={comment}/> : null
+      ))}
+      <CommentForm 
+        postId={id}
+        author={parsedUser}
+        onCommentSubmit={()=> comment(id)}
+        />
+      
     </div>
 
   )
