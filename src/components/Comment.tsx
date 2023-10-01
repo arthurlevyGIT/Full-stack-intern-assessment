@@ -32,17 +32,26 @@ const Comment = ({ postId, userInfo }: typeProp) => {
     fetcher
   );
 
-  console.log("fetcher", data?.comments);
-
   const submitComment = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
       const body = { content, authorEmail, postId };
-      await fetch(`/api/comment`, {
+      const response = await fetch(`/api/comment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
+      if (response.status === 500) {
+        const errorElement = document.getElementById("errorMsg");
+        if (errorElement) {
+          errorElement.innerHTML = "No account, please sign up first.";
+        }
+      } else {
+        const errorElement = document.getElementById("errorMsg");
+        if (errorElement) {
+          errorElement.innerHTML = "";
+        }
+      }
       mutate();
       setContent("");
       setAuthorEmail("");
@@ -103,6 +112,7 @@ const Comment = ({ postId, userInfo }: typeProp) => {
         />
         <button>Post a comment</button>
       </form>
+      <p id="errorMsg" className={styles.errorMsg}></p>
     </div>
   );
 };

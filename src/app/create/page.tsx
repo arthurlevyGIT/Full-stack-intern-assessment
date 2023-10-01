@@ -1,5 +1,4 @@
 "use client";
-import useSWR from "swr";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "../../styles/Draft.module.css";
@@ -14,15 +13,23 @@ export default function Draft() {
     e.preventDefault();
     try {
       const body = { title, content, authorEmail };
-      await fetch(`/api/post`, {
+      const response = await fetch(`/api/post`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      router.refresh();
-      router.push("/");
+      if (response.status === 500) {
+        const errorElement = document.getElementById("errorMsg");
+
+        if (errorElement) {
+          // elem avec innerHTML
+          errorElement.innerHTML = "No account, please sign up first.";
+        }
+      } else {
+        router.push("/");
+      }
     } catch (error) {
-      console.error(error);
+      console.log("ERROR USER", error);
     }
   };
 
@@ -59,6 +66,7 @@ export default function Draft() {
           <a className={styles.back} href="/">
             or Cancel
           </a>
+          <p id="errorMsg" className={styles.errorMsg}></p>
         </form>
       </div>
     </>

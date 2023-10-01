@@ -9,6 +9,7 @@ export default async function handle(
   res: NextApiResponse
 ) {
   const { title, content, authorEmail } = req.body;
+
   const result = await prisma.post.create({
     data: {
       title: title,
