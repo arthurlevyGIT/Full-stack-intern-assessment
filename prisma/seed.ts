@@ -15,6 +15,14 @@ const userData: Prisma.UserCreateInput[] = [
         },
       ],
     },
+    comments: {
+      create: [
+        {
+          content: "I am Alice",
+          postId: 1
+        }
+      ]
+    }
   },
   {
     name: 'Looser',
@@ -28,6 +36,14 @@ const userData: Prisma.UserCreateInput[] = [
         },
       ],
     },
+    comments: {
+      create: [
+        {
+          content: "I am Tom",
+          postId: 1
+        }
+      ]
+    }
   },
 ]
 

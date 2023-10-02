@@ -8,7 +8,6 @@ export default function SignUp() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
-
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     try {
@@ -19,6 +18,10 @@ export default function SignUp() {
         body: JSON.stringify(body),
       })
       router.push('/')
+
+      //Je ne trouves pas la fonction pour login et pour obtenir current user, donc je prends le localStorage, 
+      //pour plus tard s'il y a une fonction login on prends les user infos une fois que user login
+      localStorage.setItem("user", JSON.stringify(body))
     } catch (error) {
       console.error(error)
     }

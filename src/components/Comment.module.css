@@ -1,0 +1,16 @@
+.comment {
+    padding: 0 0 1rem 0;
+    border-bottom: 1px solid var(--primrary-color-hover2);
+}
+
+.button {
+    border: none;
+    border-radius: 100px;
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-color);
+    color: #FFFFFF;
+}
+
+.button:hover {
+    background-color: var(--secondary-color-hover);
+}

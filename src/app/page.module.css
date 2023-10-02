@@ -41,18 +41,24 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(25%, auto));
+  grid-template-columns: repeat(2, minmax(30%, auto));
   max-width: 100%;
   width: var(--max-width);
 }
 
 .card {
   padding: 1rem 1.2rem;
+  margin: 1rem 4rem;
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0);
   transition: background 200ms, border 200ms;
+  border-radius: 10px;
+  background: linear-gradient(285deg, rgba(217, 221, 235, 0.50) -6.49%, rgba(244, 248, 249, 0.50) 121.93%);
+  box-shadow: 0px 2px 2px 0px rgba(64, 73, 105, 0.25);
+  backdrop-filter: blur(5px);
 }
+
 
 .card span {
   display: inline-block;
@@ -66,7 +72,6 @@
 
 .card p {
   margin: 0;
-  opacity: 0.6;
   font-size: 0.9rem;
   line-height: 1.5;
   max-width: 30ch;
@@ -107,6 +112,12 @@
 .logo {
   position: relative;
 }
+
+.homeBg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
@@ -134,16 +145,21 @@
   .grid {
     grid-template-columns: 1fr;
     margin-bottom: 120px;
-    max-width: 320px;
+    max-width: 100%;
     text-align: center;
   }
 
   .card {
     padding: 1rem 2.5rem;
+    margin: 1rem auto;
   }
 
   .card h2 {
     margin-bottom: 0.5rem;
+  }
+
+  .card p {
+    margin: auto;
   }
 
   .center {
@@ -207,6 +223,13 @@
   .grid {
     grid-template-columns: repeat(2, 50%);
   }
+
+  .card {
+    width: 100%;
+    margin: 1rem 0.5rem 1rem 0;
+  }
+
+  
 }
 
 @media (prefers-color-scheme: dark) {

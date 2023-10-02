@@ -1,7 +1,7 @@
 import React from 'react'
 import Post from '../../components/Post'
 import prisma from '../../lib/prisma'
-import styles from '../../styles/Drafts.module.css'
+import styles from '../page.module.css'
 
 async function Drafts() {
   const drafts = await prisma.post.findMany({
@@ -12,9 +12,9 @@ async function Drafts() {
     <>
       <div>
         <h1>Drafts</h1>
-        <main>
+        <main className={styles.grid}>
           {drafts.map((post) => (
-            <div key={post.id} className={styles.post}>
+            <div key={post.id} className={styles.card}>
               <Post post={post} />
             </div>
           ))}
