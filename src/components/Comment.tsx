@@ -128,7 +128,7 @@ const Comment = ({ postId, userInfo, post }: typeProp) => {
               onChange={(e) => setContent(e.target.value)}
               value={content}
             />
-            <button>Post a comment</button>
+            <button className={styles.button}>Post a comment</button>
           </form>
           <p id="errorMsg" className={styles.errorMsg}></p>
           <div className={styles.commentSection}>

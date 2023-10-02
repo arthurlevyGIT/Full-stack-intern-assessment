@@ -26,7 +26,7 @@ export default function Draft() {
           errorElement.innerHTML = "No account, please sign up first.";
         }
       } else {
-        router.push("/");
+        router.push("/drafts");
       }
     } catch (error) {
       console.log("ERROR USER", error);
