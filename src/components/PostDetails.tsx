@@ -38,28 +38,41 @@ export default function PostDetails({ title, author, content, published, id, com
 
 
   return (
-    <div>
-      <h2 className={styles.h2}>{title}</h2>
-      <p>By {author?.name || 'Unknown author'}</p>
-      {/* @ts-ignore */}
-      <ReactMarkdown>{content}</ReactMarkdown>
-      {!published && (
-        <button
-          className={styles.button} onClick={() => publish(id)}>
-          Publish
+    <div className={styles.postDetails}>
+      <main className={styles.post}>
+        <h2 className={styles.h2}>{title}</h2>
+        <p>By {author?.name || 'Unknown author'}</p>
+        {/* @ts-ignore */}
+        <ReactMarkdown>{content}</ReactMarkdown>
+        {!published && (
+          <button
+            className={styles.btn1} onClick={() => publish(id)}>
+            Publish
+          </button>
+        )}
+        <button className={styles.btn2} onClick={() => destroy(id)}>
+          Delete
         </button>
-      )}
-      <button className={styles.button} onClick={() => destroy(id)}>
-        Delete
-      </button>
-      {comments && comments.map((comment, index) => (
-        comment ? <Comment key={index} comment={comment}/> : null
-      ))}
-      <CommentForm 
-        postId={id}
-        author={parsedUser}
-        onCommentSubmit={()=> comment(id)}
-        />
+      </main>
+      
+      {published &&
+       <div className={styles.commentsContainer}>
+        <div className={styles.comments}>
+          {comments && [...comments].reverse().map((comment, index) => (
+            comment ? <Comment key={index} comment={comment}/> : null
+          ))}
+        </div>
+        
+        <div className={styles.commentForm}>
+          <CommentForm 
+            postId={id}
+            author={parsedUser}
+            onCommentSubmit={()=> comment(id)}
+          />
+        </div>
+        
+        </div>
+      }
       
     </div>
 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from './Comment.module.css'
 
 type CommentFormProps =  {
   postId: number;
@@ -29,7 +30,7 @@ export default function CommentForm({ postId, author,onCommentSubmit }: CommentF
   return (
     <form onSubmit={handleSubmit}>
       <textarea value={content} onChange={(e) => setContent(e.target.value)} required />
-      <button type="submit">Add Comment</button>
+      <button type="submit" className={styles.button}>Add Comment</button>
     </form>
   );
 }

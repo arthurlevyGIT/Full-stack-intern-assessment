@@ -12,6 +12,7 @@
   --primrary-color-hover1: #78809F;
   --primrary-color-hover2: #D9DDEB;
   --secondary-color: #FF7F50;
+  --secondary-color-hover: #FFA07D;
   --complementary-color: #EEF2F3;
   --bodytext-color: #2E2C2B;
   --background-color: #FFFEFE;
@@ -75,6 +76,7 @@ nav {
 }
 @media(min-width: 1024px) {
   nav {
+    font-size: 1.2rem;
     padding: 1.5rem 5rem;
   }
 }
@@ -83,30 +85,10 @@ nav a {
   text-decoration: none;
   color: var(--primrary-color);
   display: inline-block;
-  
-  position: relative;
-}
-
-nav a:after {    
-  background: none repeat scroll 0 0 transparent;
-  bottom: -2px;
-  content: "";
-  display: block;
-  height: 2px;
-  left: 50%;
-  position: absolute;
-  background: var(--secondary-color);
-  transition: width 0.3s ease 0s, left 0.3s ease 0s;
-  width: 0;
-}
-
-nav a:hover:after { 
-  width: 100%; 
-  left: 0; 
 }
 
 nav a:first-of-type {
-  color: var(--secondary-color);
+  
 }
 
 nav a + a {
