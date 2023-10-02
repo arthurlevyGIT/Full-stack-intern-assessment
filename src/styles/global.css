@@ -59,9 +59,15 @@ textarea {
 }
 
 input[type='submit'] {
-  background: #ececec;
+  background: var(--secondary-color);
+  color: #FFFFFF;
   border: 0;
   padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+input[type='submit']:hover {
+  background-color: var(--secondary-color-hover);
 }
 
 nav {

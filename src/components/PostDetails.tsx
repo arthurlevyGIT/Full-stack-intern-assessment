@@ -1,5 +1,6 @@
 'use client'
 import { useRouter } from "next/navigation"
+import React, { useState } from "react"
 import { PostProps } from "./Post"
 import styles from '../styles/Post.module.css'
 import ReactMarkdown from 'react-markdown'
@@ -36,6 +37,30 @@ export default function PostDetails({ title, author, content, published, id, com
     title = `${title} (Draft)`
   }
 
+  const [showConfirm, setShowConfirm] = React.useState(false);
+
+  const confirmDialog = (
+    <div style={{
+      backgroundColor: 'var(--complementary-color)', 
+      color: 'black', 
+      position: 'absolute', 
+      padding: '1.5rem', 
+      borderRadius: '10px', 
+      boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)'
+    }}>
+      <p>Are you sure you want to delete this post?</p>
+      <button 
+        className={styles.btn3}
+        onClick={async () => {
+          await destroy(id);
+          setShowConfirm(false);
+      }}>
+        Yes
+      </button>
+      <button className={styles.btn3} style={{marginLeft: '1rem'}} onClick={() => setShowConfirm(false)}>No</button>
+    </div>
+  );
+
 
   return (
     <div className={styles.postDetails}>
@@ -50,9 +75,10 @@ export default function PostDetails({ title, author, content, published, id, com
             Publish
           </button>
         )}
-        <button className={styles.btn2} onClick={() => destroy(id)}>
+        <button className={styles.btn2} onClick={() => setShowConfirm(true)}>
           Delete
         </button>
+        {showConfirm && confirmDialog}
       </main>
       
       {published &&
