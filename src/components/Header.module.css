@@ -2,7 +2,7 @@
   font-weight: bold;
 }
 
-.left a[data-active='true'] {
+.left a[data-active='false'] {
   color: gray;
 }
 
@@ -11,7 +11,7 @@
   transition: all 0.20s ease;
 }
 
-.right a[data-active='true'] {
+.right a[data-active='false'] {
   color: gray;
 }
 

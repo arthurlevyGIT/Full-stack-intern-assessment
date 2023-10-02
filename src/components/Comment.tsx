@@ -6,8 +6,27 @@ import { useState } from "react";
 
 interface typeProp {
   postId: number;
-  userInfo: any;
-  post: any;
+  userInfo: {
+    id: number;
+    email: string;
+    name: string | null;
+  }[];
+  post: {
+    author: {
+      id: number;
+      email: string;
+      name: string | null;
+    } | null;
+  } & {
+    id: number;
+    createdAt: Date;
+    updatedAt: Date;
+    title: string;
+    content: string | null;
+    published: boolean;
+    viewCount: number;
+    authorId: number | null;
+  };
 }
 
 //SWR function to mutate each comment
@@ -71,7 +90,7 @@ const Comment = ({ postId, userInfo, post }: typeProp) => {
       setContent("");
       setAuthorEmail("");
     } catch (err) {
-      console.log("Be careful ! ", err);
+      console.log("Error occured... ", err);
     }
   };
 

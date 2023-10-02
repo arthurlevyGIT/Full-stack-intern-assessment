@@ -18,7 +18,7 @@ export default function SignUp() {
     try {
       const body = { name, email };
 
-      await fetch(`/api/user`, {
+      let response = await fetch(`/api/user`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -28,6 +28,9 @@ export default function SignUp() {
       if (!isValidEmail(email)) {
         alert("Please enter a valid E-mail.");
         return;
+      }
+      if (response.status === 201) {
+        alert("Your account has been created successfully");
       }
       router.push("/");
     } catch (error) {
