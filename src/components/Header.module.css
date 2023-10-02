@@ -8,11 +8,36 @@
 
 .right {
   margin-left: auto;
+  transition: all 0.20s ease;
 }
 
-.right a {
-  border: 1px solid black;
-  padding: 0.5rem 1rem;
-  border-radius: 3px;
+.right a[data-active='true'] {
+  color: gray;
+}
+
+.right :hover{
+  transform: scale(1.1);
+  transition: all 0.20s ease;
+}
+
+@media screen and (max-width: 520px) {
+
+.left a {
+  font-size: 0.80rem;
+}
+  
+.right a{
+  font-size: 0.80rem;
+  
+}
+
+.right{
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  gap: 10px;
+  
+}
+
 }
 

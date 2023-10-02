@@ -10,7 +10,7 @@ export default function Header() {
     routePathName === pathname;
 
   return (
-    <nav>
+    <nav className={styles.navBar}>
       <div className={styles.left}>
         <Link href="/" legacyBehavior>
           <a className={styles.bold} data-active={isActive("/")}>
@@ -22,10 +22,10 @@ export default function Header() {
         </Link>
       </div>
       <div className={styles.right}>
-        <Link href="/signup" legacyBehavior>
+        <Link href="/signup" className={styles.link} legacyBehavior>
           <a data-active={isActive("/signup")}>Signup</a>
         </Link>
-        <Link href="/create" legacyBehavior>
+        <Link href="/create" className={styles.link} legacyBehavior>
           <a data-active={isActive("/create")}>+ Create draft</a>
         </Link>
       </div>

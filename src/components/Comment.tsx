@@ -58,7 +58,8 @@ const Comment = ({ postId, userInfo, post }: typeProp) => {
       if (response.status === 500) {
         const errorElement = document.getElementById("errorMsg");
         if (errorElement) {
-          errorElement.innerHTML = "please re enter your e-mail or sign up.";
+          errorElement.innerHTML =
+            "please re enter your correct e-mail or sign up.";
         }
       } else {
         const errorElement = document.getElementById("errorMsg");
