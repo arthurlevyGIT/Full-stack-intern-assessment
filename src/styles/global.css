@@ -93,10 +93,6 @@ nav a {
   display: inline-block;
 }
 
-nav a:first-of-type {
-  
-}
-
 nav a + a {
   margin-left: 1rem;
 }

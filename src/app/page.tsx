@@ -14,6 +14,7 @@ export default async function Home() {
           <Post post={post}/>
         </div>
       ))}
+      <img className={styles.homeBg} src="/homeBg.png" alt="" />
     </div>
   )
 }

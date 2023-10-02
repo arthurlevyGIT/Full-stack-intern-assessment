@@ -112,6 +112,12 @@
 .logo {
   position: relative;
 }
+
+.homeBg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
