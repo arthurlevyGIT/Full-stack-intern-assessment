@@ -2,7 +2,6 @@
 import { useRouter } from "next/navigation";
 import { PostProps } from "./Post";
 import styles from "../styles/Post.module.css";
-import ReactMarkdown from "react-markdown";
 
 export default function PostDetails({
   title,
@@ -35,10 +34,11 @@ export default function PostDetails({
 
   return (
     <div>
-      <h2>{title}</h2>
-      <p>By {author?.name || "Unknown author"}</p>
+      <h2 className={styles.title}>{title} </h2>
       {/* @ts-ignore */}
-      <ReactMarkdown>{content}</ReactMarkdown>
+      <p>{content}</p>
+      <p className={styles.authorName}>Write by {author?.name}</p>
+
       {!published && (
         <button className={styles.button} onClick={() => publish(id)}>
           Publish

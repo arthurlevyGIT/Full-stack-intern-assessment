@@ -7,6 +7,7 @@ import { useState } from "react";
 interface typeProp {
   postId: number;
   userInfo: any;
+  post: any;
 }
 
 //SWR function to mutate each comment
@@ -19,16 +20,20 @@ const fetcher = async (url: string) => {
     const error = new Error(data.message);
     throw error;
   }
-
   return data;
 };
+
+function dateConver(date: string) {
+  const dateDonnee = new Date(date);
+  return dateDonnee.toLocaleString();
+}
 
 function isValidEmail(email: string): boolean {
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return emailRegex.test(email);
 }
 
-const Comment = ({ postId, userInfo }: typeProp) => {
+const Comment = ({ postId, userInfo, post }: typeProp) => {
   const [content, setContent] = useState("");
   const [authorEmail, setAuthorEmail] = useState("");
 
@@ -36,7 +41,6 @@ const Comment = ({ postId, userInfo }: typeProp) => {
     `http://localhost:3000/api/getComments`,
     fetcher
   );
-
   const submitComment = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
@@ -54,7 +58,7 @@ const Comment = ({ postId, userInfo }: typeProp) => {
       if (response.status === 500) {
         const errorElement = document.getElementById("errorMsg");
         if (errorElement) {
-          errorElement.innerHTML = "No account, please sign up first.";
+          errorElement.innerHTML = "please re enter your e-mail or sign up.";
         }
       } else {
         const errorElement = document.getElementById("errorMsg");
@@ -69,7 +73,7 @@ const Comment = ({ postId, userInfo }: typeProp) => {
       console.log("Be careful ! ", err);
     }
   };
-  // ca ne marche pas impossible de map
+
   function getCommentByPostId(postId: number): [] {
     return data?.comments.filter((it: any) => it.postId === postId);
   }
@@ -83,47 +87,53 @@ const Comment = ({ postId, userInfo }: typeProp) => {
   }
 
   return (
-    <div className={styles.commentContainer}>
-      <div className={styles.commentSection}>
-        <p className="CounterComments">
-          {getCommentByPostId(postId) &&
-            (getCommentByPostId(postId).length > 1
-              ? `${getCommentByPostId(postId).length} Comments`
-              : `${getCommentByPostId(postId).length} Comment`)}
-        </p>
-        {getCommentByPostId(postId) &&
-          (getCommentByPostId(postId).length === 0
-            ? ""
-            : getCommentByPostId(postId).map((comment: any) => (
-                <div key={comment.id}>
-                  <li>{comment.content}</li>
-                  <div className="otherInformations">
-                    <span>{commentName(comment.authorId)} -</span>
-                    <span> {comment.createdAt.toLocaleString()}</span>
-                  </div>
-                </div>
-              )))}
-      </div>
-      <h3>Post a comment</h3>
-      <form onSubmit={submitComment} className={styles.formCommentContainer}>
-        <input
-          type="text"
-          name="author"
-          onChange={(e) => setAuthorEmail(e.target.value)}
-          placeholder="Email"
-          className={styles.commentFormName}
-          value={authorEmail}
-        />
-        <textarea
-          className={styles.commentFormComment}
-          placeholder="Comment"
-          onChange={(e) => setContent(e.target.value)}
-          value={content}
-        />
-        <button>Post a comment</button>
-      </form>
-      <p id="errorMsg" className={styles.errorMsg}></p>
-    </div>
+    <>
+      {post.published && (
+        <div className={styles.commentContainer}>
+          <h3>Post a comment</h3>
+          <form
+            onSubmit={submitComment}
+            className={styles.formCommentContainer}>
+            <input
+              type="text"
+              name="author"
+              onChange={(e) => setAuthorEmail(e.target.value)}
+              placeholder="Email"
+              className={styles.commentFormName}
+              value={authorEmail}
+            />
+            <textarea
+              className={styles.commentFormComment}
+              placeholder="Comment"
+              onChange={(e) => setContent(e.target.value)}
+              value={content}
+            />
+            <button>Post a comment</button>
+          </form>
+          <p id="errorMsg" className={styles.errorMsg}></p>
+          <div className={styles.commentSection}>
+            <p className={styles.counterComments}>
+              {getCommentByPostId(postId) &&
+                (getCommentByPostId(postId).length > 1
+                  ? `${getCommentByPostId(postId).length} Comments`
+                  : `${getCommentByPostId(postId).length} Comment`)}
+            </p>
+            {getCommentByPostId(postId) &&
+              (getCommentByPostId(postId).length === 0
+                ? ""
+                : getCommentByPostId(postId).map((comment: any) => (
+                    <div key={comment.id} className={styles.listOfComments}>
+                      <div className="otherInformations">
+                        <h4>{commentName(comment.authorId)}</h4>
+                        <small> {dateConver(comment.createdAt)}</small>
+                      </div>
+                      <li>{comment.content}</li>
+                    </div>
+                  )))}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -14,11 +14,12 @@ export default async function Post({ params }: { params: { id: string } }) {
   if (!post) notFound();
 
   const userInfo = await prisma.user.findMany();
+  console.log(post);
 
   return (
     <>
       <PostDetails {...post} />
-      <Comment postId={id} userInfo={userInfo} />
+      <Comment postId={id} userInfo={userInfo} post={post} />
     </>
   );
 }

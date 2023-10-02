@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import ReactMarkdown from "react-markdown";
 import styles from "./Post.module.css";
 import Link from "next/link";
 import type { Post, User } from "@prisma/client";
@@ -21,10 +20,11 @@ export default function Post({ post }: { post: PostProps }) {
         alt="dailyArticle"
         className={styles.image}
       />
-      <h2>{post.title}</h2>
+      <h2 className={styles.title}>{post.title?.slice(0, 30)}(...)</h2>
+      <small className={styles.authorName}>By {authorName}</small>
       {/* @ts-ignore */}
-      <ReactMarkdown>{post.content} </ReactMarkdown>
-      <small>By {authorName}</small>
+      <p className={styles.content}>{post.content?.slice(0, 20)}(...)</p>
+
       <Link href={`/p/${post.id}`} className={styles.post}>
         View more
       </Link>
