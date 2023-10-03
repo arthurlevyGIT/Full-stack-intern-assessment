@@ -1,29 +1,29 @@
-'use client'
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import styles from '../../styles/Draft.module.css'
+"use client";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import styles from "../../styles/Draft.module.css";
 
 export default function Draft() {
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  const [authorEmail, setAuthorEmail] = useState('')
-  const router = useRouter()
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [authorEmail, setAuthorEmail] = useState("");
+  const router = useRouter();
 
   const submitData = async (e: React.SyntheticEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const body = { title, content, authorEmail }
+      const body = { title, content, authorEmail };
       await fetch(`/api/post`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
-      })
+      });
 
-      router.push('/')
+      router.push("/");
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <>
@@ -61,5 +61,5 @@ export default function Draft() {
         </form>
       </div>
     </>
-  )
+  );
 }
