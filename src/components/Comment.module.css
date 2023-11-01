@@ -1,0 +1,38 @@
+.newComment {
+  padding: 32px 0;
+  width: 400px;
+}
+
+.newComment h2 {
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 16px;
+  width: 400px;
+}
+
+.comment .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 24px;
+}
+
+.comment .header span {
+  font-size: 14px;
+  color: #888;
+}

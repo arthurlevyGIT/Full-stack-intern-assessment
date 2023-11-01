@@ -33,10 +33,9 @@ model Comment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   content   String?
-  published Boolean  @default(false)
   likes     Int      @default(0)
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?
-  Post      Post?    @relation(fields: [postId], references: [id])
+  post      Post?    @relation(fields: [postId], references: [id])
   postId    Int?
 }

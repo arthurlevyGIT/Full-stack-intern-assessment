@@ -4,7 +4,6 @@ CREATE TABLE "Comment" (
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     "content" TEXT,
-    "published" BOOLEAN NOT NULL DEFAULT false,
     "likes" INTEGER NOT NULL DEFAULT 0,
     "authorId" INTEGER,
     "postId" INTEGER,
