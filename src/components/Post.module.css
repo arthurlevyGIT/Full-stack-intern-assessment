@@ -3,3 +3,17 @@
   text-decoration: none;
   padding: 2rem;
 }
+
+.postWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addCommentButton {
+  background: #ececec;
+  border: 0;
+  border-radius: 0.125rem;
+  height: 100%;
+  padding: 12px;
+}

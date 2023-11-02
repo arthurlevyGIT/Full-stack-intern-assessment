@@ -1,0 +1,35 @@
+.addCommentWrapper{    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1rem 0 1rem 2rem;
+}
+
+.addCommentWrapper input {
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    padding: 8px;
+    border: 1px solid black;
+    box-shadow: none;
+}
+
+.button {
+    background: #ececec;
+    border: 0;
+    border-radius: 5px;
+    padding: 12px 18px;
+}
+
+.textAreaWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.errorMsg {
+    margin-top: 4px;
+    font-size: 10px;
+    color: red;
+}
